@@ -65,7 +65,7 @@
 					session_start();
 					include '../f1_mysqli.php';
 
-					$query = "TeamID, TeamName, Location, TPFname, TPLname, Image from Team WHERE Image is Not NULL";
+					$query = "SELECT TeamID, TeamName, Location, TPFname, TPLname, Image from Team WHERE Image is Not NULL";
 					$result = mysqli_query($conn, $query);
 
 					while ($row = mysqli_fetch_assoc($result)) {
