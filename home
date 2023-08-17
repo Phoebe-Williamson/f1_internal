@@ -11,7 +11,7 @@
 				<img src="Images/F1-logo.png" height="150" width="270">	
 			</div>
 			<h1 class="title">
-				f1
+				f1 - home
 			</h1>
 			<div class="search">
 				<h1>Search</h1>
@@ -21,6 +21,9 @@
 				</form>
 
 				<?php
+				session_start();
+				include '../f1_mysqli.php';
+				
 					/* searches database to see if the input matches */
 					if (isset($_POST['search'])) {
 						$search = $_POST['search'];
@@ -58,32 +61,16 @@
 				<a class="one" href="home.php">Home</a>
 				<a class="one" href="driver.php">Drivers</a>
 				<a class="one" href="teams.php"> Teams</a>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    			<link rel="stylesheet" type="text/css" href="styles.css">
 			</nav>
 		</header>
-		
-		
-		
 		<div class="polaroid-gallery">
-				<?php
-					session_start();
-					include '../f1_mysqli.php';
-
-					$query = "SELECT * FROM Driver Where Image is NOT NULL";
-					$result = mysqli_query($conn, $query);
-
-					while ($row = mysqli_fetch_assoc($result)) {
-						echo '<div class="polaroid">';
-						echo '<img src="Images/' . $row['Image'] . '" width="300" height="300" alt="' . $row['Image'] . '">';
-						echo '</div>';
-					}
-
-				?>
-
+			<div class="polaroid">
+				<img src="Images/F1_grid.jpg" width="300" height="300">
+			</div>
+			<div class="polaroid">
+				<img src="Images/F1_grid.jpg" width="300" height="300">
+			</div>
 		</div>
-		<img src="Images/F1_grid.jpg" width="300" height="300">
 	</body>
-
 </html>
-
-
