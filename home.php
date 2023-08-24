@@ -67,14 +67,16 @@
 		<div class="polaroid-gallery">
 			<a href="driver.php">
 				<div class="polaroid">
-					<img src="Images/F1_grid.jpg" width="300" height="300">
+					<img class="one" src="Images/F1_grid.jpg" width="300" height="300">
 					<div class="caption"> drivers</div>
 				</div>
 			</a>
-			<div class="polaroid">
-				<img src="Images/F1_grid.jpg" width="300" height="300">
-				<div class="caption"> teams</div>
-			</div>
+			<a href="teams.php">
+				<div class="polaroid">
+					<img class="one" src="Images/F1_grid.jpg" width="300" height="300">
+					<div class="caption"> teams</div>
+				</div>
+			</a>
 		</div>
 	</body>
 </html>
