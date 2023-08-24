@@ -65,10 +65,12 @@
 			</nav>
 		</header>
 		<div class="polaroid-gallery">
-			<div class="polaroid">
-				<img src="Images/F1_grid.jpg" width="300" height="300">
-				<div class="caption"> drivers</div>
-			</div>
+			<a href="driver.php">
+				<div class="polaroid">
+					<img src="Images/F1_grid.jpg" width="300" height="300">
+					<div class="caption"> drivers</div>
+				</div>
+			</a>
 			<div class="polaroid">
 				<img src="Images/F1_grid.jpg" width="300" height="300">
 				<div class="caption"> teams</div>
