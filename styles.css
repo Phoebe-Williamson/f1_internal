@@ -144,6 +144,11 @@ img.one:hover{
   max-width: 100%;
 }
 
+.polaroid img {
+  max-width: 100%;
+  height: auto;
+}
+
 .caption {
   margin-top: 10px;
   font-size: 14px;
