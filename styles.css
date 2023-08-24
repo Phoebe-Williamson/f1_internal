@@ -9,6 +9,7 @@ header {
 	display: grid;
 	grid-template-columns: 1fr 2fr 1fr;	
 	grid-template-rows: auto auto;
+	background-color: white;
 }
 
 .logo {
@@ -21,7 +22,8 @@ header {
 .title{
 	grid-column: 2/3;
 	grid-row: 1/2;
-	text-align: centre;
+	text-align: center;
+	color: #000080;
 }
 
 .search{
@@ -32,11 +34,14 @@ header {
 .login{
 	grid-column: 1/2;
 	grid-row: 2/3;
+	text-align: center;
 }
 
 nav{
 	grid-column: 2/3;
 	grid-row: 2/3;
+	display: flex;
+	text-align: center;
 }
 
 a.one {
@@ -63,6 +68,19 @@ a.one:hover {
     text-decoration: none;
     margin-right: 20px;
 }
+
+a.two{
+	font-size: 17px;
+    padding: 10px;
+    margin-top: 20px;
+    color: black;
+    width: 200px;
+    border-radius: 10px; /* Updated border-radius value */
+    font-family: sans-serif;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
 
 
 .polaroid-gallery {
@@ -124,7 +142,6 @@ img.one:hover{
 
 .polaroid img {
   max-width: 100%;
-  height: auto;
 }
 
 .caption {
