@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+	session_start();
+	include '../f1_mysqli.php';
+?>
 <html>
 	<head>
 		<link rel="stylesheet" href="styles.css">
@@ -8,7 +12,9 @@
 	<body>
 		<header> 
 			<div class="logo">
-				<img src="Images/F1-logo.png" height="150" width="270">	
+				<a class="two" href="home.php">
+            		<img src="Images/F1-logo.png" alt="F1 logo" height="150" width="270">	
+				</a>
 			</div>
 			<h1 class="title">
 				f1 - home
@@ -20,10 +26,7 @@
 					<input type="submit" name="submit" value="Search" class="search_button">
 				</form>
 
-				<?php
-				session_start();
-				include '../f1_mysqli.php';
-				
+				<?php				
 					/* searches database to see if the input matches */
 					if (isset($_POST['search'])) {
 						$search = $_POST['search'];
@@ -67,9 +70,11 @@
 		<div class="polaroid-gallery">
 			<div class="polaroid">
 				<img src="Images/F1_grid.jpg" width="300" height="300">
+				<div class="caption"> drivers</div>
 			</div>
 			<div class="polaroid">
 				<img src="Images/F1_grid.jpg" width="300" height="300">
+				<div class="caption"> teams</div>
 			</div>
 		</div>
 	</body>
