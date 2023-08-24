@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+	session_start();
+	include '../f1_mysqli.php';
+?>
 <html>
 	<head>
 		<link rel="stylesheet" href="styles.css">
@@ -8,7 +12,9 @@
 	<body>
 		<header> 
 			<div class="logo">
-				<img src="Images/F1-logo.png" height="150" width="270">	
+				<a class="two" href="home.php">
+            		<img src="Images/F1-logo.png" alt="F1 logo" height="150" width="270">	
+				</a>
 			</div>
 			<h1 class="title">
 				f1 - teams
@@ -62,15 +68,15 @@
 		</header>
 		<div class="polaroid-gallery">
 				<?php
-					session_start();
-					include '../f1_mysqli.php';
-
 					$query = "SELECT TeamID, TeamName, Location, TPFname, TPLname, Image from Team WHERE Image is Not NULL";
 					$result = mysqli_query($conn, $query);
 
 					while ($row = mysqli_fetch_assoc($result)) {
 						echo '<div class="polaroid">';
 						echo '<img src="Images/' . $row['Image'] . '" width="300" height="300" alt="' . $row['Image'] . '">';
+						echo '<div class="caption">';
+						echo $row['TeamName'];
+						echo '</div>';
 						echo '</div>';
 					}
 
