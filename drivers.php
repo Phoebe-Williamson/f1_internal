@@ -74,6 +74,7 @@
 
 					while ($row = mysqli_fetch_assoc($result)) {
 						echo '<div class="polaroid">';
+						echo "<input type='hidden' name='DriverID' value='" . $row['DriverID'] . "'>";
 						echo '<img src="Images/' . $row['Image'] . '" width="300" height="300" alt="' . $row['Image'] . '">';
 						echo '<div class="caption">';
 						echo $row['Fname']. " ". $row['Lname']. " - ".$row['DriverID'];
@@ -84,7 +85,6 @@
 				?>
 
 		</div>
-		<img src="Images/F1_grid.jpg" width="300" height="300">
 	</body>
 
 </html>
