@@ -45,11 +45,9 @@
 							echo "There were no search results!";
 						} else {
 							/* prints search results */
-							echo "Dog: <br>";
+							echo "Driver: ";
 							while ($row = mysqli_fetch_array($search_query_name_results)) {
-								echo $row['Fname'];
-								echo "<br>";
-								echo $row['Lname'];
+								echo $row['Fname']." ".$row['Lname'];
 								echo "<br>";
 							}
 						}
