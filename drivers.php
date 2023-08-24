@@ -8,10 +8,12 @@
 	<body>
 		<header> 
 			<div class="logo">
-				<img src="Images/F1-logo.png" height="150" width="270">	
+				<a class="two" href="home.php">
+            		<img src="Images/F1-logo.png" alt="F1 logo" height="150" width="270">	
+				</a>
 			</div>
 			<h1 class="title">
-				f1
+				f1 - drivers
 			</h1>
 			<div class="search">
 				<h1>Search</h1>
@@ -21,6 +23,8 @@
 				</form>
 
 				<?php
+				session_start();
+					include '../f1_mysqli.php';
 					/* searches database to see if the input matches */
 					if (isset($_POST['search'])) {
 						$search = $_POST['search'];
@@ -39,11 +43,9 @@
 							echo "There were no search results!";
 						} else {
 							/* prints search results */
-							echo "Dog: <br>";
+							echo "Driver: <br>";
 							while ($row = mysqli_fetch_array($search_query_name_results)) {
-								echo $row['Fname'];
-								echo "<br>";
-								echo $row['Lname'];
+								echo $row['Fname']. " ". $row['Lname'];
 								echo "<br>";
 							}
 						}
@@ -65,15 +67,17 @@
 		
 		<div class="polaroid-gallery">
 				<?php
-					session_start();
-					include '../f1_mysqli.php';
+					
 
-					$query = "SELECT * FROM Driver Where Image is NOT NULL";
+					$query = "SELECT * FROM Bio, Driver Where Bio.BioId = Driver.BioID AND Image is NOT NULL";
 					$result = mysqli_query($conn, $query);
 
 					while ($row = mysqli_fetch_assoc($result)) {
 						echo '<div class="polaroid">';
 						echo '<img src="Images/' . $row['Image'] . '" width="300" height="300" alt="' . $row['Image'] . '">';
+						echo '<div class="caption">';
+						echo $row['Fname']. " ". $row['Lname']. " - ".$row['DriverID'];
+						echo '</div>';
 						echo '</div>';
 					}
 
