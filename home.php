@@ -31,10 +31,14 @@
 					if (isset($_POST['search'])) {
 						$search = $_POST['search'];
 
-						$search_query_name = "SELECT Fname, Lname
-											  FROM Bio
-											  WHERE Fname LIKE '%$search%'
-											  OR Lname LIKE '%$search%'";
+						$search_query_name = "SELECT b.Fname, b.Lname, d.DriverID, t.TeamName
+											  FROM Bio b, Driver d, Team t
+											  WHERE b.BioID = d.BioID
+											  AND t.TeamID = d.TeamID
+											  AND Fname LIKE '%$search%'
+											  OR Lname LIKE '%$search%'
+											  OR DriverID LIKE '%$search%'
+											  OR TeamName LIKE '%$search%'";
 
 						$search_query_name_results = mysqli_query($conn, $search_query_name);
 
@@ -45,9 +49,13 @@
 							echo "There were no search results!";
 						} else {
 							/* prints search results */
-							echo "Driver: ";
 							while ($row = mysqli_fetch_array($search_query_name_results)) {
-								echo $row['Fname']." ".$row['Lname'];
+								echo "Driver and number: ";
+								echo $row['Fname']." ".$row['Lname']." - ".$row['DriverID'];
+								echo "<br>";
+								echo "Team: ";
+								echo $row['TeamName'];
+								echo "<br>";
 							}
 						}
 					}
@@ -61,13 +69,14 @@
 				<a class="one" href="home.php">Home</a>
 				<a class="one" href="driver.php">Drivers</a>
 				<a class="one" href="teams.php"> Teams</a>
+				<a class="one" href="tracks.php"> Tracks</a>
     			<link rel="stylesheet" type="text/css" href="styles.css">
 			</nav>
 		</header>
 		<div class="polaroid-gallery">
 			<a href="driver.php">
 				<div class="polaroid">
-					<img class="one" src="Images/F1_grid.jpg" width="300" height="300">
+					<img class="one" src="Images/F1-drivers (1).jpg" width="300" height="300">
 					<div class="caption"> drivers</div>
 				</div>
 			</a>
