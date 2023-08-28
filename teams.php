@@ -16,8 +16,8 @@
             		<img src="Images/F1-logo.png" alt="F1 logo" height="150" width="270">	
 				</a>
 			</div>
-			<h1 class="title">
-				f1 - teams
+			<h1 class="title">				
+				F1 - Teams
 			</h1>
 			<div class="search">
 				<h1>Search</h1>
@@ -61,6 +61,7 @@
 				<a class="one" href="home.php">Home</a>
 				<a class="one" href="driver.php">Drivers</a>
 				<a class="one" href="teams.php"> Teams</a>
+				<a class="one" href="tracks.php"> Tracks</a>
     			<link rel="stylesheet" type="text/css" href="styles.css">
 			</nav>
 		</header>
@@ -71,7 +72,8 @@
 
 					while ($row = mysqli_fetch_assoc($result)) {
 						echo '<div class="polaroid">';
-						echo '<img src="Images/' . $row['Image'] . '" width="300" height="300" alt="' . $row['Image'] . '">';
+						echo "<input type='hidden' name='TeamID' value='" . $row['TeamID'] . "'>";
+						echo '<img src="Images/' . $row['Image'] . '" height="168.75px" alt="' . $row['Image'] . '">';
 						echo '<div class="caption">';
 						echo $row['TeamName'];
 						echo '</div>';
@@ -81,7 +83,6 @@
 				?>
 
 		</div>
-		<img src="Images/F1_grid.jpg" width="300" height="300">
 	</body>
 
 </html>
