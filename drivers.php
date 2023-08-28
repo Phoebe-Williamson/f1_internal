@@ -2,9 +2,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="styles.css">
-		
 	</head>
-
 	<body>
 		<header> 
 			<div class="logo">
@@ -21,7 +19,6 @@
 					<input type="text" name="search">
 					<input type="submit" name="submit" value="Search" class="search_button">
 				</form>
-
 				<?php
 				session_start();
 					include '../f1_mysqli.php';
@@ -59,34 +56,28 @@
 				<a class="one" href="home.php">Home</a>
 				<a class="one" href="driver.php">Drivers</a>
 				<a class="one" href="teams.php"> Teams</a>
+				<a class="one" href="tracks.php"> Tracks</a>
     			<link rel="stylesheet" type="text/css" href="styles.css">
 			</nav>
 		</header>
-		
-		
-		
 		<div class="polaroid-gallery">
 				<?php
-					
-
 					$query = "SELECT * FROM Bio, Driver Where Bio.BioId = Driver.BioID AND Image is NOT NULL";
 					$result = mysqli_query($conn, $query);
 
 					while ($row = mysqli_fetch_assoc($result)) {
 						echo '<div class="polaroid">';
+						echo '<a class="three">';
 						echo "<input type='hidden' name='DriverID' value='" . $row['DriverID'] . "'>";
 						echo '<img src="Images/' . $row['Image'] . '" width="300" height="300" alt="' . $row['Image'] . '">';
 						echo '<div class="caption">';
 						echo $row['Fname']. " ". $row['Lname']. " - ".$row['DriverID'];
 						echo '</div>';
+						echo '</a>';
 						echo '</div>';
 					}
 
 				?>
-
 		</div>
 	</body>
-
 </html>
-
-
