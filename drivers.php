@@ -62,22 +62,24 @@
 		</header>
 		<div class="polaroid-gallery">
 				<?php
+					/* show all drivers */
 					$query = "SELECT * FROM Bio, Driver Where Bio.BioId = Driver.BioID AND Image is NOT NULL";
 					$result = mysqli_query($conn, $query);
-
-					while ($row = mysqli_fetch_assoc($result)) {
-						echo '<div class="polaroid">';
-						echo '<a class="three">';
-						echo "<input type='hidden' name='DriverID' value='" . $row['DriverID'] . "'>";
-						echo '<img src="Images/' . $row['Image'] . '" width="300" height="300" alt="' . $row['Image'] . '">';
-						echo '<div class="caption">';
-						echo $row['Fname']. " ". $row['Lname']. " - ".$row['DriverID'];
-						echo '</div>';
-						echo '</a>';
-						echo '</div>';
-					}
-
-				?>
+			    
+						while ($row = mysqli_fetch_assoc($result)) {
+							echo '<div class="polaroid">';
+							echo '<a class="three" href="profile.php">';		/* respond to user click */
+							echo "<form name='drivers_form' id='drivers_form' method='get' action='profile.php'>";
+							echo "<input type='hidden' name='DriverID' value='" . $row['DriverID'] . "'>";
+							echo "</form>";
+							echo '<img src="Images/' . $row['Image'] . '" width="300" height="300" alt="' . $row['Image'] . '">';
+							echo '<div class="caption">';
+							echo $row['Fname']. " ". $row['Lname']. " - ".$row['DriverID'];
+							echo '</div>';
+							echo '</a>';
+							echo '</div>';
+						}
+					?>
 		</div>
 	</body>
 </html>
