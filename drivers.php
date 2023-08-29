@@ -68,7 +68,7 @@
 			    
 						while ($row = mysqli_fetch_assoc($result)) {
 							echo '<div class="polaroid">';
-							echo '<a class="three" href="profile.php">';		/* respond to user click */
+							echo '<a class="three" href="profile.php?DriverID='.$row['DriverID'].'">';		/* respond to user click */
 							echo "<form name='drivers_form' id='drivers_form' method='get' action='profile.php'>";
 							echo "<input type='hidden' name='DriverID' value='" . $row['DriverID'] . "'>";
 							echo "</form>";
@@ -80,6 +80,6 @@
 							echo '</div>';
 						}
 					?>
-		</div>
+		</div>		
 	</body>
 </html>
