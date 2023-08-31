@@ -6,7 +6,9 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="styles.css">
-		
+		<title>
+			Formula 1 - Home
+		</title>
 	</head>
 
 	<body>
@@ -31,25 +33,41 @@
 					if (isset($_POST['search'])) {
 						$search = $_POST['search'];
 
-						$search_query_name = "SELECT b.Fname, b.Lname, d.DriverID, t.TeamName
+						$search_query_fname = "SELECT DISTINCT b.Fname, b.Lname, d.DriverID, t.TeamName
 											  FROM Bio b, Driver d, Team t
 											  WHERE b.BioID = d.BioID
 											  AND t.TeamID = d.TeamID
-											  AND Fname LIKE '%$search%'
-											  OR Lname LIKE '%$search%'
-											  OR DriverID LIKE '%$search%'
-											  OR TeamName LIKE '%$search%'";
+											  AND Fname LIKE '%$search%'";
+						
+						$search_query_lname = "SELECT DISTINCT b.Fname, b.Lname, d.DriverID, t.TeamName
+											  FROM Bio b, Driver d, Team t
+											  WHERE b.BioID = d.BioID
+											  AND t.TeamID = d.TeamID
+											  AND Lname LIKE '%$search%'";
+						
+						$search_query_DriverID = "SELECT DISTINCT b.Fname, b.Lname, d.DriverID, t.TeamName
+											  FROM Bio b, Driver d, Team t
+											  WHERE b.BioID = d.BioID
+											  AND t.TeamID = d.TeamID
+											  AND DriverID LIKE '%$search%'";
+						
+						$search_query_teamname = "SELECT DISTINCT b.Fname, b.Lname, d.DriverID, t.TeamName
+											  FROM Bio b, Driver d, Team t
+											  WHERE b.BioID = d.BioID
+											  AND t.TeamID = d.TeamID
+											  AND TeamName LIKE '%$search%'";
+						
 
-						$search_query_name_results = mysqli_query($conn, $search_query_name);
+						$search_query_results = mysqli_query($conn, $search_query_fname);
 
-						$count = mysqli_num_rows($search_query_name_results);
+						$count = mysqli_num_rows($search_query_results);
 
 						/* checks if there are any results from the search */
 						if ($count == 0) {
 							echo "There were no search results!";
 						} else {
 							/* prints search results */
-							while ($row = mysqli_fetch_array($search_query_name_results)) {
+							while ($row = mysqli_fetch_array($search_query_results)) {
 								echo "Driver and number: ";
 								echo $row['Fname']." ".$row['Lname']." - ".$row['DriverID'];
 								echo "<br>";
