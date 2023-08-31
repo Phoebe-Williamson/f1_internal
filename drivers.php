@@ -6,14 +6,16 @@
 	<body>
 		<header> 
 			<div class="logo">
+				<!Logo link for home page>
 				<a class="two" href="home.php">
             		<img src="Images/F1-logo.png" alt="F1 logo" height="150" width="270">	
 				</a>
 			</div>
 			<h1 class="title">
-				f1 - drivers
+				Formula 1 - Drivers
 			</h1>
 			<div class="search">
+				<!search area>
 				<h1>Search</h1>
 				<form method="post">
 					<input type="text" name="search">
@@ -59,6 +61,18 @@
 				<a class="one" href="tracks.php"> Tracks</a>
     			<link rel="stylesheet" type="text/css" href="styles.css">
 			</nav>
+			<div class="driver_nav">
+				<?php
+					$query = "SELECT * FROM Bio, Driver Where Bio.BioId = Driver.BioID AND Image is NOT NULL";
+					$result = mysqli_query($conn, $query);
+				
+					while ($row = mysqli_fetch_assoc($result)) {
+						echo '<a class="one" href="profile.php?DriverID='.$row['DriverID'].'"> ';
+						echo $row['DriverID'];
+						echo '</a>';
+					}
+				?>
+			</div>	
 		</header>
 		<div class="polaroid-gallery">
 				<?php
@@ -68,7 +82,7 @@
 			    
 						while ($row = mysqli_fetch_assoc($result)) {
 							echo '<div class="polaroid">';
-							echo '<a class="three" href="profile.php?DriverID='.$row['DriverID'].'">';		/* respond to user click */
+							echo '<a class="three" href="profile.php?DriverID='.$row['DriverID'].'">';		/* respond to user click and sends driver id */
 							echo "<form name='drivers_form' id='drivers_form' method='get' action='profile.php'>";
 							echo "<input type='hidden' name='DriverID' value='" . $row['DriverID'] . "'>";
 							echo "</form>";
