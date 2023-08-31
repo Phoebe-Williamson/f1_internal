@@ -6,13 +6,11 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="styles.css">
-		
 	</head>
-
 	<body>
 		<header> 
 			<div class="logo">
-				<a class="two" href="home.php">
+				<a class="two" href="home.php"> <! Image acts as link to home page >
             		<img src="Images/F1-logo.png" alt="F1 logo" height="150" width="270">	
 				</a>
 			</div>
@@ -30,7 +28,8 @@
 					/* searches database to see if the input matches */
 					if (isset($_POST['search'])) {
 						$search = $_POST['search'];
-
+						
+						/* selects what will be displayed when searched */
 						$search_query_name = "SELECT Fname, Lname
 											  FROM Bio
 											  WHERE Fname LIKE '%$search%'
@@ -45,8 +44,8 @@
 							echo "There were no search results!";
 						} else {
 							/* prints search results */
-							echo "Driver: ";
 							while ($row = mysqli_fetch_array($search_query_name_results)) {
+								echo "Driver: ";
 								echo $row['Fname']." ".$row['Lname'];
 								echo "<br>";
 							}
@@ -58,6 +57,7 @@
 				login
 			</div>
 			<nav>
+				<! Links to different pages of website>
 				<a class="one" href="home.php">Home</a>
 				<a class="one" href="driver.php">Drivers</a>
 				<a class="one" href="teams.php"> Teams</a>
@@ -67,24 +67,22 @@
 		</header>
 		<div class="polaroid-gallery">
 				<?php
+					/* gets infor from teams table in database */
 					$query = "SELECT TeamID, TeamName, Location, TPFname, TPLname, Image from Team WHERE Image is Not NULL";
 					$result = mysqli_query($conn, $query);
-
+			
+					/* checks taht data is in database */
 					while ($row = mysqli_fetch_assoc($result)) {
 						echo '<div class="polaroid">';
+						echo '<a class="three" href="team_profile.php?TeamID='.$row['TeamID'].'">'; /* when clicked, sends user to profile page with the driverid of driver clicked*/
 						echo "<input type='hidden' name='TeamID' value='" . $row['TeamID'] . "'>";
-						echo '<img src="Images/' . $row['Image'] . '" height="168.75px" alt="' . $row['Image'] . '">';
+						echo '<img src="Images/' . $row['Image'] . '" height="168.75px" alt="' . $row['Image'] . '">'; /* Displays the image based on whats in the databse and checks to make sure it is in folder */
 						echo '<div class="caption">';
-						echo $row['TeamName'];
+						echo $row['TeamName']; /* displays team name in caption (Under image) */
 						echo '</div>';
 						echo '</div>';
 					}
-
 				?>
-
 		</div>
 	</body>
-
 </html>
-
-
