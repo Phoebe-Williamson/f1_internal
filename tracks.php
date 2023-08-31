@@ -6,13 +6,11 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="styles.css">
-		
 	</head>
-
 	<body>
 		<header> 
 			<div class="logo">
-				<a class="two" href="home.php">
+				<a class="two" href="home.php"> <! Image acts as link to home page >
             		<img src="Images/F1-logo.png" alt="F1 logo" height="150" width="270">	
 				</a>
 			</div>
@@ -58,6 +56,7 @@
 				login
 			</div>
 			<nav>
+				<! Links to the differnt webpages
 				<a class="one" href="home.php">Home</a>
 				<a class="one" href="driver.php">Drivers</a>
 				<a class="one" href="teams.php"> Teams</a>
@@ -67,24 +66,21 @@
 		</header>
 		<div class="polaroid-gallery">
 				<?php
+					/* Gets info from database*/
 					$query = "SELECT TrackID, TrackName, Location from Track ";
 					$result = mysqli_query($conn, $query);
 
+					/* checks that results are in database*/
 					while ($row = mysqli_fetch_assoc($result)) {
 						echo '<div class="polaroid">';
 						echo "<input type='hidden' name='TeamID' value='" . $row['TrackID'] . "'>";
-						echo $row['TrackName'];
+						echo $row['TrackName']; /* displays track name */
 						echo '<div class="caption">';
-						echo $row['Location'];
+						echo $row['Location']; /* displays track location in caption area */
 						echo '</div>';
 						echo '</div>';
 					}
-
 				?>
-
 		</div>
 	</body>
-
 </html>
-
-
