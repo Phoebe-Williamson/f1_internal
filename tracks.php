@@ -56,7 +56,7 @@
 				login
 			</div>
 			<nav>
-				<! Links to the differnt webpages
+				<! Links to the differnt webpages>
 				<a class="one" href="home.php">Home</a>
 				<a class="one" href="driver.php">Drivers</a>
 				<a class="one" href="teams.php"> Teams</a>
@@ -67,15 +67,17 @@
 		<div class="polaroid-gallery">
 				<?php
 					/* Gets info from database*/
-					$query = "SELECT TrackID, TrackName, Location from Track ";
+					$query = "SELECT TrackID, TrackName, Location, TrackImage from Track Where TrackImage IS NOT NULL";
 					$result = mysqli_query($conn, $query);
 
 					/* checks that results are in database*/
 					while ($row = mysqli_fetch_assoc($result)) {
 						echo '<div class="polaroid">';
+						echo '<a class="three" href="tracks_profile.php?TrackID='.$row['TrackID'].'">';
 						echo "<input type='hidden' name='TeamID' value='" . $row['TrackID'] . "'>";
-						echo $row['TrackName']; /* displays track name */
+						echo '<img src="Images/' . $row['TrackImage'] . '" height="168.75px" alt="' . $row['TrackImage'] . '">'; /* Displays the image based on whats in the databse and checks to make sure it is in folder */
 						echo '<div class="caption">';
+						echo $row['TrackName']." - "; /* displays track name */
 						echo $row['Location']; /* displays track location in caption area */
 						echo '</div>';
 						echo '</div>';
