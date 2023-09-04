@@ -52,7 +52,7 @@
 							?>
 			</div>
 			<div class="login">
-				login
+				<a class="one" href="login.php">Login</a>
 			</div>
 			<nav>
 				<a class="one" href="home.php">Home</a>
