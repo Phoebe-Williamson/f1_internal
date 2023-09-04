@@ -81,7 +81,7 @@
 			
 			</div>
 			<div class="login">
-				login
+				<a class="one" href="login.php">Login</a>
 			</div>
 			<nav>
 				<a class="one" href="home.php">Home</a>
@@ -95,13 +95,13 @@
 			<a href="driver.php">
 				<div class="polaroid">
 					<img class="one" src="Images/F1-drivers (1).jpg" width="300" height="300">
-					<div class="caption"> drivers</div>
+					<div class="caption">Drivers</div>
 				</div>
 			</a>
 			<a href="teams.php">
 				<div class="polaroid">
 					<img class="one" src="Images/F1_grid.jpg" width="300" height="300">
-					<div class="caption"> teams</div>
+					<div class="caption">Teams</div>
 				</div>
 			</a>
 		</div>
