@@ -54,7 +54,7 @@
 							?>
 			</div>
 			<div class="login">
-				login
+				<a class="one" href="login.php">Login</a>
 			</div>
 			<nav>
 				<! Links to different pages of website>
@@ -80,6 +80,7 @@
 						echo '<div class="caption">';
 						echo $row['TeamName']; /* displays team name in caption (Under image) */
 						echo '</div>';
+						echo '</a>';
 						echo '</div>';
 					}
 				?>
