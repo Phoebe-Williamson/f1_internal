@@ -53,7 +53,7 @@
 							?>
 			</div>
 			<div class="login">
-				login
+				<a class="one" href="login.php">Login</a>
 			</div>
 			<nav>
 				<! Links to the differnt webpages>
