@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+	session_start();
+	include '../f1_mysqli.php';
+?>
 <html>
 	<head>
 		<link rel="stylesheet" href="styles.css">
@@ -19,27 +23,78 @@
 					<input type="text" name="search">
 					<input type="submit" name="submit" value="Search" class="search_button">
 				</form>
-				<?php
-				session_start();
-					include '../f1_mysqli.php';
+				<?php				
 					/* searches database to see if the input matches */
 					if (isset($_POST['search'])) {
 						$search = $_POST['search'];
 
-						$search_query_name = "SELECT Fname, Lname
-											  FROM Bio
-											  WHERE Fname LIKE '%$search%'
-											  OR Lname LIKE '%$search%'";
-						$search_query_name_results = mysqli_query($conn, $search_query_name);
-						$count = mysqli_num_rows($search_query_name_results);
+						$search_query_fname = "SELECT DISTINCT b.Fname, b.Lname, d.DriverID, t.TeamName
+											  FROM Bio b, Driver d, Team t
+											  WHERE b.BioID = d.BioID
+											  AND t.TeamID = d.TeamID
+											  AND Fname LIKE '%$search%'";
+						
+						$search_query_lname = "SELECT DISTINCT b.Fname, b.Lname, d.DriverID, t.TeamName
+											  FROM Bio b, Driver d, Team t
+											  WHERE b.BioID = d.BioID
+											  AND t.TeamID = d.TeamID
+											  AND Lname LIKE '%$search%'";
+						
+						$search_query_DriverID = "SELECT DISTINCT b.Fname, b.Lname, d.DriverID, t.TeamName
+											  FROM Bio b, Driver d, Team t
+											  WHERE b.BioID = d.BioID
+											  AND t.TeamID = d.TeamID
+											  AND DriverID LIKE '%$search%'";
+						
+						$search_query_teamname = "SELECT DISTINCT b.Fname, b.Lname, d.DriverID, t.TeamName
+											  FROM Bio b, Driver d, Team t
+											  WHERE b.BioID = d.BioID
+											  AND t.TeamID = d.TeamID
+											  AND TeamName LIKE '%$search%'";
+						
+
+						$search_query_result1 = mysqli_query($conn, $search_query_fname);
+						$search_query_result2 = mysqli_query($conn, $search_query_lname);
+						$search_query_result3 = mysqli_query($conn, $search_query_DriverID);
+						$search_query_result4 = mysqli_query($conn,$search_query_teamname);
+
+						$count = mysqli_num_rows($search_query_result1) + mysqli_num_rows($search_query_result2) + mysqli_num_rows($search_query_result3) +mysqli_num_rows($search_query_result4);
+
 						/* checks if there are any results from the search */
 						if ($count == 0) {
 							echo "There were no search results!";
 						} else {
 							/* prints search results */
-							echo "Driver: <br>";
-							while ($row = mysqli_fetch_array($search_query_name_results)) {
-								echo $row['Fname']. " ". $row['Lname'];
+							while ($row = mysqli_fetch_array($search_query_result1)) {
+								echo "Driver and number: ";
+								echo $row['Fname']." ".$row['Lname']." - ".$row['DriverID'];
+								echo "<br>";
+								echo "Team: ";
+								echo $row['TeamName'];
+								echo "<br>";
+							}
+						while ($row = mysqli_fetch_array($search_query_result2)) {
+								echo "Driver and number: ";
+								echo $row['Fname']." ".$row['Lname']." - ".$row['DriverID'];
+								echo "<br>";
+								echo "Team: ";
+								echo $row['TeamName'];
+								echo "<br>";
+							}
+						while ($row = mysqli_fetch_array($search_query_result3)) {
+								echo "Driver and number: ";
+								echo $row['Fname']." ".$row['Lname']." - ".$row['DriverID'];
+								echo "<br>";
+								echo "Team: ";
+								echo $row['TeamName'];
+								echo "<br>";
+							}
+						while ($row = mysqli_fetch_array($search_query_result4)) {
+								echo "Driver and number: ";
+								echo $row['Fname']." ".$row['Lname']." - ".$row['DriverID'];
+								echo "<br>";
+								echo "Team: ";
+								echo $row['TeamName'];
 								echo "<br>";
 							}
 						}
@@ -57,6 +112,7 @@
     			<link rel="stylesheet" type="text/css" href="styles.css">
 			</nav>
 		</header>
+		<a class="two" href="driver.php">←Back</a>
 		<div class="polaroid-gallery">
 				<?php
 				if(isset($_GET['DriverID'])) {
@@ -66,8 +122,7 @@
 				}
 					$show_driver = "SELECT * FROM Driver WHERE DriverID='".$DriverID."'";
 			
-			
-			echo $_GET['DriverID'];
+				echo $DriverID;
 			
 			
 					$query = "SELECT b.BioID, b.Fname, b.Lname, b.Nationality, b.DOB, d.Image, d.DriverID FROM Bio b, Driver d Where b.BioID = d.BioID AND d.DriverID = '".$DriverID."'";
@@ -84,8 +139,7 @@
 						echo '</div>';
 						echo '</div>';
 					}
-
 				?>
-		</div>
+		</div>		
 	</body>
 </html>
