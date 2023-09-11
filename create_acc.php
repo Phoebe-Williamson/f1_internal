@@ -27,7 +27,6 @@
 					<input type="text" name="search">
 					<input type="submit" name="submit" value="Search" class="search_button">
 				</form>
-
 				<?php				
 					/* searches database to see if the input matches */
 					if (isset($_POST['search'])) {
@@ -58,16 +57,43 @@
 											  AND TeamName LIKE '%$search%'";
 						
 
-						$search_query_results = mysqli_query($conn, $search_query_fname);
+						$search_query_result1 = mysqli_query($conn, $search_query_fname);
+						$search_query_result2 = mysqli_query($conn, $search_query_lname);
+						$search_query_result3 = mysqli_query($conn, $search_query_DriverID);
+						$search_query_result4 = mysqli_query($conn,$search_query_teamname);
 
-						$count = mysqli_num_rows($search_query_results);
+						$count = mysqli_num_rows($search_query_result1) + mysqli_num_rows($search_query_result2) + mysqli_num_rows($search_query_result3) +mysqli_num_rows($search_query_result4);
 
 						/* checks if there are any results from the search */
 						if ($count == 0) {
 							echo "There were no search results!";
 						} else {
 							/* prints search results */
-							while ($row = mysqli_fetch_array($search_query_results)) {
+							while ($row = mysqli_fetch_array($search_query_result1)) {
+								echo "Driver and number: ";
+								echo $row['Fname']." ".$row['Lname']." - ".$row['DriverID'];
+								echo "<br>";
+								echo "Team: ";
+								echo $row['TeamName'];
+								echo "<br>";
+							}
+						while ($row = mysqli_fetch_array($search_query_result2)) {
+								echo "Driver and number: ";
+								echo $row['Fname']." ".$row['Lname']." - ".$row['DriverID'];
+								echo "<br>";
+								echo "Team: ";
+								echo $row['TeamName'];
+								echo "<br>";
+							}
+						while ($row = mysqli_fetch_array($search_query_result3)) {
+								echo "Driver and number: ";
+								echo $row['Fname']." ".$row['Lname']." - ".$row['DriverID'];
+								echo "<br>";
+								echo "Team: ";
+								echo $row['TeamName'];
+								echo "<br>";
+							}
+						while ($row = mysqli_fetch_array($search_query_result4)) {
 								echo "Driver and number: ";
 								echo $row['Fname']." ".$row['Lname']." - ".$row['DriverID'];
 								echo "<br>";
@@ -81,7 +107,7 @@
 			
 			</div>
 			<div class="login">
-				<a class="one" href="login.php">Login</a>
+				login
 			</div>
 			<nav>
 				<a class="one" href="home.php">Home</a>
