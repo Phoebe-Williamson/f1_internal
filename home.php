@@ -27,7 +27,6 @@
 					<input type="text" name="search">
 					<input type="submit" name="submit" value="Search" class="search_button">
 				</form>
-
 				<?php				
 					/* searches database to see if the input matches */
 					if (isset($_POST['search'])) {
@@ -105,11 +104,31 @@
 						}
 					}
 							?>
-			
 			</div>
 			<div class="login">
-				<a class="one" href="login.php">Login</a>
-				<a class="one" href="process_logout.php">Logout</a>
+				<?php
+					if((!isset($_SESSION['Logged_in'])) or $_SESSION['Logged_in'] != 1){
+					echo "Not logged in";
+					echo "<a class='one' href='login.php'>Login</a>";
+					}
+					else {
+					echo "Logged In: ".$_SESSION['Username'];
+					echo "<a class='one' href='process_logout.php'>Logout</a>";
+					
+						$username = $_SESSION['Username'];
+						
+					$user_rank_query = "SELECT * FROM Users WHERE Username = '$username'";
+					$user_rank_result = mysqli_query($conn, $user_rank_query);
+					$user_rank_row = mysqli_fetch_assoc($user_rank_result);
+
+					$user_rank = $user_rank_row['Rank']; //store the users rank as a variable
+					$required_rank = "admin"; 
+						
+						if($user_rank == $required_rank){
+							echo "<a class='one' href='add_page.php'>Admin</a>";
+						}	
+					}
+				?>
 			</div>
 			<nav>
 				<a class="one" href="home.php">Home</a>
