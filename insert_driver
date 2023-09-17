@@ -155,24 +155,36 @@
 		$insert_bio = "INSERT INTO Bio (Fname, Lname, DOB, Nationality, Description) VALUES ('$Fname', '$Lname', '$DOB', '$Nation', '$Desc') ";
 		
 		
-		if(!mysqli_query($conn, $insert_bio)) {
-			echo 'Not added';
+		// Execute the first query
+		if (!mysqli_query($conn, $insert_bio)) {
+			echo 'Bio insertion failed: ' . mysqli_error($conn);
 		} else {
-			echo 'bio added';
+			echo 'Bio added';
 		}
-		
-		$driver_query = "SELECT BioID from Bio where Fname = $Fname AND Lname = $Lname";
+
+		// Execute the second query
+		$driver_query = "SELECT BioID FROM Bio WHERE Fname = '$Fname' AND Lname = '$Lname'";
 		$driver_result = mysqli_query($conn, $driver_query);
-		$driver_record = mysqli_fetch_assoc($driver_result);
-		$BioID = $driver_record['BioID'];
-		
-		$insert_driver = "INSERT INTO Driver (DriverID, BioID, TeamID, Poles, Wins, Championships, Image) Values($DriverID, $BioID, $TeamID, $Wins, $Champs, $Image)";
-		
-		if(!mysqli_query($conn, $insert_driver)) {
-			echo 'Not added';
+
+		if (!$driver_result) {
+			echo 'Driver query failed: ' . mysqli_error($conn);
 		} else {
-			echo 'driver added';
-			header("refresh:7, url=driver.php");
+			$driver_record = mysqli_fetch_assoc($driver_result);
+
+			if (!$driver_record) {
+				echo 'No BioID found';
+			} else {
+				$BioID = $driver_record['BioID'];
+
+				$insert_driver = "INSERT INTO Driver (DriverID, BioID, TeamID, Poles, Wins, Championships, Image) VALUES ('$DriverID', '$BioID', '$TeamID', '$Poles', '$Wins', '$Champs', '$Image')";
+
+				if (!mysqli_query($conn, $insert_driver)) {
+					echo 'Driver insertion failed: ' . mysqli_error($conn);
+				} else {
+					echo 'Driver added';
+					header("refresh:7, url=driver.php");
+				}
+			}
 		}
-		
+
 		?>
