@@ -7,7 +7,7 @@
 	<head>
 		<link rel="stylesheet" href="styles.css">
 		<title>
-			Formula 1 - Home
+			Formula 1 - Create Account
 		</title>
 	</head>
 
@@ -19,7 +19,7 @@
 				</a>
 			</div>
 			<h1 class="title">
-				f1 - home
+				Create account
 			</h1>
 			<div class="search">
 				<h1>Search</h1>
@@ -107,7 +107,6 @@
 			
 			</div>
 			<div class="login">
-				login
 			</div>
 			<nav>
 				<a class="one" href="home.php">Home</a>
@@ -118,13 +117,16 @@
 			</nav>
 		</header>
 		
-		
-<h2>Create account</h2>
-<p>Fill in information bellow to create an account </p>
+		<div class="login_page">
+			<h2>Create account</h2>
+			<p>Fill in the information below to create an account </p>
 
-    <form action="insert_user.php" method="post">
-        Username: <input type="text" name="Username" placeholder='e.g. John_doe' required><br>
-        Password: <input type="text" name="Password" placeholder='e.g. Password' required><br>
+				<form action="insert_user.php" method="post">
+					Username: <input type="text" name="Username" placeholder='e.g. John_doe' required><br>
+					Password: <input type="text" name="Password" placeholder='e.g. Password' required><br>
 
-	<input type='submit' name='submit' id='submit' value='Create account'>
-    </form>
+				<input type='submit' name='submit' id='submit' value='Create account'>
+				</form>
+
+			<p> Already have an account? <a class ="four" href="login.php"> Sign in </a> </p>
+		</div>
