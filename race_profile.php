@@ -148,16 +148,14 @@
 						$RaceID=1;
 					}
 						$show_race = "SELECT * FROM Race WHERE RaceID='".$RaceID."'";
-					
-					echo $RaceID;
 
 						/*gets information form race table based on raceid sent in from race page*/
-						$query = "SELECT * FROM Race WHERE RaceID='".$RaceID."'";
+						$query = "SELECT t.TrackImage FROM Race r, Track t WHERE r.TrackID = t.TrackID AND RaceID='".$RaceID."'";
 						$result = mysqli_query($conn, $query);
 
 						/* checks that results are in database*/
 						while ($row = mysqli_fetch_assoc($result)) {
-							echo '<img src="Images/F1_grid.jpg" width="800" height="700">';
+							echo '<img src="Images/' . $row['TrackImage'] . '" width="450" height="253.125" alt="' . $row['TrackImage'] . '">';
 						}
 					
 					?>
@@ -170,8 +168,6 @@
 						$RaceID=1;
 					}
 						$show_race = "SELECT * FROM Race, Track WHERE Race.TrackID = Track.TrackID AND RaceID='".$RaceID."'";
-					
-					echo $RaceID;
 					
 						/*gets information form race and track table based on raceid sent in from race page*/
 						/*$query = "SELECT * FROM Race, Track Where Race.TrackID = Track.TrackID AND RaceID ='".$RaceID."'"; */
@@ -205,10 +201,6 @@
 							echo '<br>'."There is no race winner yet as race has not occured";
 						}
 					?>
-					
-					
-					
-					
 					
 				</div>
 		</grid>
