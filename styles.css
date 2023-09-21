@@ -1,4 +1,10 @@
+/* Importing my fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&family=Prompt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&family=Prompt&family=Raleway:ital,wght@0,400;1,200;1,400&display=swap');
+
 body {
+	/*sets margin and padding as zero to not affect any other grids*/
   margin: 0;
   padding: 0;
   background-color: #f0f0f0;
@@ -8,62 +14,69 @@ body {
 /* grid for header section*/
 header {
 	display: grid;
-	grid-template-columns: 1fr 2fr 1fr;	
+	grid-template-columns: 1fr 2fr 1fr;	/*sets the collumn width of the grid*/
 	grid-template-rows: auto auto auto;
-	background-color: #355ADE;
+	background-color: #355ADE; /*is the blue bacground colour seen on nav*/
+	font-family: Poppins;
 }
 
 	.logo {
+			/*sets the area of the grid it is in*/
 			grid-column: 1/2;
 			grid-row: 1/2;
 			text-align: center;
-			background-color: white;
+			background-color: white; /*sets background colour as white as blue backeground is not wanted here*/
 	}
 
 	.title{
+		/*sets the area of the grid it is in*/
 		grid-column: 2/3;
 		grid-row: 1/2;
-		padding: 20px;
+		padding: 20px; /*gest text off of the top of webpage*/
 		margin: 0px;
-		background-color: white;
-		text-align: center;
+		background-color: white;  /*sets background colour as white as blue backeground is not wanted here*/
+		text-align: center; /* puts text in center of box*/
 		color: black;
 	}
 
 	.search{
+		/*sets the area of the grid it is in*/
 		grid-column: 3/4;
 		grid-row: 1/2;
 		background-color: white;
 	}
 
 	.login{
+		/*sets the area of the grid it is in*/
 		grid-column: 1/2;
 		grid-row: 2/3;
 		text-align: center;
-		padding: 10px;
+		padding: 10px; /*keeps text centered in box*/
 		color: white;
 		background-color: #355ADE;
 	}
 
 
 	nav{
+		/*sets the area of the grid it is in*/
 		grid-column: 2/3;
 		grid-row: 2/3;
 		display: flex;
 		text-align: center;
 		color: white;
 		background-color: #355ADE;
+		font-family: Poppins;
 	}
 	
-	.driver_nav{
+	.driver_nav{ /*This is the extra nav that is on the driver page*/
 	grid-column: 1/4;
 	grid-row: 3/4;
 	text-align: center;
 	padding: 10px;
 	margin: 0px;
-	gap: 30px;
+	gap: 30px; /*this sets thne gap between each numbver/link to driver profile page*/
 	color: white;
-	background-color: #1D3EB7;
+	background-color: #1D3EB7; /*has a darker blue background colour seen on  driver nav*/
 	sticky
 	}
 
@@ -74,16 +87,17 @@ grid {
 	grid-template-columns: 1fr 1fr 1fr 1fr;	
 	grid-template-rows: auto auto auto auto;
 }
-.profile1{
+
+.profile1{ /*This grid is for the left half of the page (where the image will be sitting)*/
 	grid-column: 1/3;
 	grid-row: 4/5;
 	text-align: center;
 	padding: 10px;
-	color: white;
+	color: Black;
 }
 
-.profile2{
-	grid-column: 3/4;
+.profile2{ /*This grid is for the right hand side of the page (where all the information from queries will be)*/
+	grid-column: 3/5;
 	grid-row: 4/5;
 	text-align: center;
 	content: center;
@@ -92,16 +106,17 @@ grid {
 }
 
 
-
+/* Is the a tag for my main nav bar*/
 a.one {
     font-size: 17px;
     padding: 10px;
-    color: white;
+    color: white; /*font color set as white*/
     width: 200px;
     font-family: sans-serif;
     text-decoration: none;
 }
 
+/* Is the a tag hover for my main nav abr*/
 a.one:hover {
     font-size: 17px;
     padding: 10px;
@@ -112,6 +127,7 @@ a.one:hover {
     text-decoration: none;
 }
 
+/*is the a tag for the log link to home pahe*/
 a.two{
 	font-size: 17px;
     padding: 10px;
@@ -124,6 +140,7 @@ a.two{
     margin-right: 20px;
 }
 
+/*for a tag in polaroid on  race page*/
 a.three{
 	margin-top: 10px;
 	font-size: 14px;
@@ -131,89 +148,63 @@ a.three{
 	text-decoration: none;
 }
 
+/*for the hover on race page. text turns green when hovered*/
 a.three:hover{
 	color: green;
 }
 
+/*link to my create acc page from login page and from creat acc page to login page*/
 a.four {
 	font-size: S17px;
     text-decoration: none;
 	color: blue;
 }
 
-
+/*link to my create acc page from login page and from creat acc page to login page */
 a.four:hover {
-	color: purple;
+	color: purple; /*text goes purple when hovered over*/
 	text-decoration: bold;
 }
 
+/*grid for my polariods on all pages*/
 .polaroid-gallery {
-  display: flex;
+  display: flex; /* sets the flex box area of website*/
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-  padding: 20px;
+  gap: 20px; /*this sets thne gap between each polariod on the page*/
+  padding: 20px; /*gives the text and image a padding from the outside*/
 }
 
+/*is the inforamtion for the polaroid on the page*/
 .polaroid {
-  width: 300px;
+  width: 300px; /*sets the width of each box*/
   padding: 20px;
   background-color: white;
   border: 1px solid #ddd;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  
 }
 
-.polariod:hover {
-  width: 300px;
-  padding: 20px;
-  background-color: green;
-  border: 1px solid #ddd;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
 
-.polaroid.one { /* Change class name to "polaroid one" */
-  width: 300px;
-  padding: 20px;
-  background-color: white;
-  border: 3px solid blue;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.polaroid.one img { /* Apply the styles to the new class name */
-  max-width: 100%;
-  height: auto;
-}
-
-.polaroid.one:hover {
-  width: 300px;
-  padding: 20px;
-  background-color: blue;
-  border: 1px solid #ddd;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
+/*Image for the polaroid on driver, team, track and race pages*/
 .polaroid img {
   max-width: 100%;
 }
 
+/* Image for the polariod images on the home page*/
 .polaroid img.one {
   max-width: 100%;
   height: auto;
 }
 
-/**/
+/* This is where the text of the polaird sits under the image*/
 .caption {
   margin-top: 10px;
   font-size: 14px;
   color: #666;
 }
 
-/*When the caption of the polariod is hovered over, the text goes red*/
+/*When the caption of the polariod is hovered over (and has <a> tag), the text goes red*/
 .caption:hover {
   margin-top: 10px;
   font-size: 14px;
