@@ -99,8 +99,6 @@ grid {
 .profile2{ /*This grid is for the right hand side of the page (where all the information from queries will be)*/
 	grid-column: 3/5;
 	grid-row: 4/5;
-	text-align: center;
-	content: center;
 	padding: 10px;
 	color: black;
 }
@@ -204,12 +202,6 @@ a.four:hover {
   color: #666;
 }
 
-/*When the caption of the polariod is hovered over (and has <a> tag), the text goes red*/
-.caption:hover {
-  margin-top: 10px;
-  font-size: 14px;
-  color: red;
-}
 
 /*Layout for the login and create account pages*/
 .login-page {
