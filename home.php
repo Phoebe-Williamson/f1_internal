@@ -19,13 +19,14 @@
 				</a>
 			</div>
 			<h1 class="title">
-				f1 - home
+				Formula 1 - Home
 			</h1>
 			<div class="search">
 				<h1>Search</h1>
 				<form method="post">
 					<input type="text" name="search">
 					<input type="submit" name="submit" value="Search" class="search_button">
+					<input type="submit" href="home.php" value="Clear" class="search_button">
 				</form>
 				<?php				
 					/* searches database to see if the input matches */
@@ -135,6 +136,7 @@
 				<a class="one" href="driver.php">Drivers</a>
 				<a class="one" href="teams.php"> Teams</a>
 				<a class="one" href="tracks.php"> Tracks</a>
+				<a class="one" href="race.php"> Races</a>
     			<link rel="stylesheet" type="text/css" href="styles.css">
 			</nav>
 		</header>
@@ -149,6 +151,18 @@
 				<div class="polaroid">
 					<img class="one" src="Images/F1_grid.jpg" width="300" height="300">
 					<div class="caption">Teams</div>
+				</div>
+			</a>
+			<a href="tracks.php">
+				<div class="polaroid">
+					<img class="one" src="Images/track.jpg" width="300" height="200">
+					<div class="caption">Tracks</div>
+				</div>
+			</a>
+			<a href="race.php">
+				<div class="polaroid">
+					<img class="one" src="Images/race.webp" width="300" height="300">
+					<div class="caption">Races</div>
 				</div>
 			</a>
 		</div>
