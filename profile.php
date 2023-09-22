@@ -109,37 +109,56 @@
 				<a class="one" href="driver.php">Drivers</a>
 				<a class="one" href="teams.php"> Teams</a>
 				<a class="one" href="tracks.php"> Tracks</a>
+				<a class="one" href="race.php"> Races</a>
     			<link rel="stylesheet" type="text/css" href="styles.css">
 			</nav>
 		</header>
 		<a class="two" href="driver.php">←Back</a>
-		<div class="polaroid-gallery">
-				<?php
-				if(isset($_GET['DriverID'])) {
-					$DriverID = $_GET['DriverID'];
-				} else {
-					$DriverID=1;
-				}
-					$show_driver = "SELECT * FROM Driver WHERE DriverID='".$DriverID."'";
-			
-				echo $DriverID;
-			
-			
-					$query = "SELECT b.BioID, b.Fname, b.Lname, b.Nationality, b.DOB, d.Image, d.DriverID FROM Bio b, Driver d Where b.BioID = d.BioID AND d.DriverID = '".$DriverID."'";
-					$result = mysqli_query($conn, $query);
-
-					while ($row = mysqli_fetch_assoc($result)) {
-						echo '<div class="polaroid">';
-						echo '<img src="Images/' . $row['Image'] . '" width="300" height="300" alt="' . $row['Image'] . '">';
-						echo '<div class="caption">';
-						echo $row['Fname'];
-						echo $row['Lname'];
-						echo $row['DOB'];
-						echo $row['Nationality'];
-						echo '</div>';
-						echo '</div>';
+		<grid>
+			<div class="profile1">
+				
+					<?php
+					if(isset($_GET['DriverID'])) {
+						$DriverID = $_GET['DriverID'];
+					} else {
+						$DriverID=1;
 					}
-				?>
-		</div>		
+						$show_driver = "SELECT * FROM Driver WHERE DriverID='".$DriverID."'";
+
+						$query = "SELECT b.BioID, b.Fname, b.Lname, b.Nationality, b.DOB, d.Image, d.DriverID FROM Bio b, Driver d Where b.BioID = d.BioID AND d.DriverID = '".$DriverID."'";
+						$result = mysqli_query($conn, $query);
+
+						while ($row = mysqli_fetch_assoc($result)) {
+							echo '<img src="Images/' . $row['Image'] . '" width="700" height="700" alt="' . $row['Image'] . '">';
+						}
+					?>
+			</div>	
+			<div class="profile2">
+					<?php
+					if(isset($_GET['DriverID'])) {
+						$DriverID = $_GET['DriverID'];
+					} else {
+						$DriverID=1;
+					}
+						$show_driver = "SELECT * FROM Driver WHERE DriverID='".$DriverID."'";
+
+						$query = "SELECT b.BioID, b.Fname, b.Lname, b.Nationality, b.DOB, b.Description, d.Image, d.DriverID, d.Poles, d.Wins, d.Championships FROM Bio b, Driver d Where b.BioID = d.BioID AND d.DriverID = '".$DriverID."'";
+						$result = mysqli_query($conn, $query);
+
+						while ($row = mysqli_fetch_assoc($result)) {
+							echo '<h1>';
+							echo "Driver name: ".$row['Fname']." ".$row['Lname'].'<br>';
+							echo "Driver numebr: ".$row['DriverID'];
+							echo '<br>'."Date of Birth: ".$row['DOB'].'<br>';
+							echo "Nationality: ".$row['Nationality'].'<br>';
+							echo "Pole positions: ".$row['Poles'].'<br>';
+							echo "Wins: ".$row['Wins'].'<br>';
+							echo "Championships: ".$row['Championships'].'<br>';
+							echo "Description: ".$row['Description'].'<br>';
+							echo '</h1>';
+						}
+					?>
+			</div>
+		</grid>
 	</body>
 </html>
