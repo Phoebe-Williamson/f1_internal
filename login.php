@@ -107,7 +107,7 @@
 			
 			</div>
 			<div class="login">
-				login
+				<a class='one' href='login.php'>Login</a>
 			</div>
 			<nav>
 				<a class="one" href="home.php">Home</a>
@@ -118,7 +118,6 @@
 			</nav>
 		</header>
 		<?php
-		include '../f1_mysqli.php';
 
 		$password = 'Cheese';
 
@@ -129,16 +128,20 @@
 		echo $bcrypt_password;
 
 		?>
+		<div class="login_page">
+			<h2>Login Here </h2>
+			<form name='login_form' id='login+form' method='post' action='process_login.php'>
+			<label for='Username'>Username:</label>
+			<input type='text' name='Username' required><br>
 
-		<h2>Login Here </h2>
-		<form name='login_form' id='login+form' method='post' action='process_login.php'>
-		<label for='Username'>Username:</label>
-		<input type='text' name='Username' required><br>
+			<label for='Password'>Password:</label>
+			<input type='text' name='Password' required><br>
 
-		<label for='Password'>Password:</label>
-		<input type='text' name='Password' required><br>
+			<input type='submit' name='submit' id='submit' value='Log In'>
+			</form>
 
-		<input type='submit' name='submit' id='submit' value='Log In'>
-		</form>
+
+			<p> Don't have an account? <a class="four" href="create_acc.php"> Create one here</a> </p> 
+		</div>
 	</body>
 </html>
