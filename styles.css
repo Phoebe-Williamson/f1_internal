@@ -192,7 +192,7 @@ a.four:hover {
 /* Image for the polariod images on the home page*/
 .polaroid img.one {
   max-width: 100%;
-  height: auto;
+  height: 200px;
 }
 
 /* This is where the text of the polaird sits under the image*/
