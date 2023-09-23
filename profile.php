@@ -167,7 +167,7 @@
 					}
 						$show_driver = "SELECT * FROM Driver WHERE DriverID='".$DriverID."'";
 
-						$query = "SELECT b.BioID, b.Fname, b.Lname, b.Nationality, b.DOB, b.Description, d.Image, d.DriverID, d.Poles, d.Wins, d.Championships FROM Bio b, Driver d Where b.BioID = d.BioID AND d.DriverID = '".$DriverID."'";
+						$query = "SELECT b.BioID, d.DriverID, b.Fname, b.Lname, b.Nationality, b.DOB, b.Description, d.Image, d.Poles, d.Wins, d.Championships, t.TeamName FROM Bio b, Driver d, Team t Where b.BioID = d.BioID AND d.TeamID = t.TeamID AND d.DriverID = '".$DriverID."'";
 						$result = mysqli_query($conn, $query);
 
 						while ($row = mysqli_fetch_assoc($result)) {
@@ -179,6 +179,7 @@
 							echo "Pole positions: ".$row['Poles'].'<br>';
 							echo "Wins: ".$row['Wins'].'<br>';
 							echo "Championships: ".$row['Championships'].'<br>';
+							echo "Team: ".$row['TeamName'].'<br>';
 							echo "Description: ".$row['Description'].'<br>';
 							echo '</h1>';
 						}
