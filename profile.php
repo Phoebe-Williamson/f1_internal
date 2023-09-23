@@ -6,6 +6,9 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="styles.css">
+		<title>
+			Formula 1 - Driver profile
+		</title>
 	</head>
 	<body>
 		<header> 
@@ -15,7 +18,7 @@
 				</a>
 			</div>
 			<h1 class="title">
-				f1 - Driver Profile
+				Formula 1 - Driver Profile
 			</h1>
 			<div class="search">
 				<h1>Search</h1>
