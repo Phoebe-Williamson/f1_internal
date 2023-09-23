@@ -15,7 +15,7 @@
 				</a>
 			</div>
 			<h1 class="title">
-				f1 - Track Profile
+				Formula - Track Profile
 			</h1>
 			<div class="search">
 				<h1>Search</h1>
@@ -102,18 +102,42 @@
 							?>
 			</div>
 			<div class="login">
-				login
+				<?php
+					if((!isset($_SESSION['Logged_in'])) or $_SESSION['Logged_in'] != 1){
+					echo "Not logged in";
+					echo "<a class='one' href='login.php'>Login</a>";
+					}
+					else {
+					echo "Logged In: ".$_SESSION['Username'];
+					echo "<a class='one' href='process_logout.php'>Logout</a>";
+					
+						$username = $_SESSION['Username'];
+						
+					$user_rank_query = "SELECT * FROM Users WHERE Username = '$username'";
+					$user_rank_result = mysqli_query($conn, $user_rank_query);
+					$user_rank_row = mysqli_fetch_assoc($user_rank_result);
+
+					$user_rank = $user_rank_row['Rank']; //store the users rank as a variable
+					$required_rank = "admin"; 
+						
+						if($user_rank == $required_rank){
+							echo "<a class='one' href='add_page.php'>Admin</a>";
+						}	
+					}
+				?>
 			</div>
 			<nav>
 				<a class="one" href="home.php">Home</a>
 				<a class="one" href="driver.php">Drivers</a>
 				<a class="one" href="teams.php"> Teams</a>
 				<a class="one" href="tracks.php"> Tracks</a>
+				<a class="one" href="race.php"> Races</a>
     			<link rel="stylesheet" type="text/css" href="styles.css">
 			</nav>
 		</header>
 		<a class="two" href="tracks.php">←Back</a>
-		<div class="polaroid-gallery">
+		<grid>
+			<div class="profile1">
 				<?php
 				if(isset($_GET['TrackID'])) {
 					$TrackID = $_GET['TrackID'];
@@ -121,22 +145,41 @@
 					$TrackID=1;
 				}
 					$show_track = "SELECT * FROM Track WHERE TrackID='".$TrackID."'";
-			
-				echo $TrackID;
 
-					$query = "SELECT t.TrackID, t.TrackName, t.Location FROM Track t Where  t.TrackID= '".$TrackID."'";
+					$query = "SELECT t.TrackID, t.TrackName, t.Location, t.CircuitImage FROM Track t Where  t.TrackID= '".$TrackID."'";
 					$result = mysqli_query($conn, $query);
 
 					while ($row = mysqli_fetch_assoc($result)) {
-						echo '<div class="polaroid">';
-						echo $row['TrackName'];
-						echo '<div class="caption">';
-						echo $row['Location'];
-						echo '<br>';
-						echo '</div>';
-						echo '</div>';
+						echo '<img src="Images/' . $row['CircuitImage'] . '" width="750" height="421.875" alt="' . $row['CircuitImage'] . '">';
 					}
 				?>
-		</div>		
+			</div>
+			<div class="profile2">
+				<?php
+				if(isset($_GET['TrackID'])) {
+					$TrackID = $_GET['TrackID'];
+				} else {
+					$TrackID=1;
+				}
+					$show_track = "SELECT * FROM Track WHERE TrackID='".$TrackID."'";
+
+					$query = "SELECT * FROM Track t Where  t.TrackID= '".$TrackID."'";
+					$result = mysqli_query($conn, $query);
+
+					while ($row = mysqli_fetch_assoc($result)) {
+						echo '<h1>';
+						echo $row['TrackName']." - ".$row['Location'].'<br>';
+						echo "Circuit length: ".$row['Circuit_Length']."km".'<br>';
+						echo "Race distance: ".$row['Total_distance']."km".'<br>';
+						echo "Number of laps: ".$row['N_Laps'].'<br>';
+						echo "Year race was first held: ".$row['First_GP'].'<br>';
+						echo "Fastest lap time: ".$row['LR_Time'].'<br>';
+						echo "Driver who set fastest lap: ".$row['DriverID'].'<br>';
+						echo "Number of corners in circuit: ".$row['Corners'].'<br>';
+						echo "Number of DRS zones: ".$row['Drs_zones'].'<br>';
+						echo '<br>';
+					}
+				?>
+			</div>
+		</grid>		
 	</body>
-</html>
