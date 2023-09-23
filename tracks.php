@@ -15,7 +15,7 @@
 				</a>
 			</div>
 			<h1 class="title">				
-				F1 - Tracks
+				Formula 1 - Tracks
 			</h1>
 			<div class="search">
 				<h1>Search</h1>
@@ -110,6 +110,7 @@
 				<a class="one" href="driver.php">Drivers</a>
 				<a class="one" href="teams.php"> Teams</a>
 				<a class="one" href="tracks.php"> Tracks</a>
+				<a class="one" href="race.php"> Races</a>
     			<link rel="stylesheet" type="text/css" href="styles.css">
 			</nav>
 		</header>
