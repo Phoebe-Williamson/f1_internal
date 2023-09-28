@@ -171,17 +171,17 @@
 						$result = mysqli_query($conn, $query);
 
 						while ($row = mysqli_fetch_assoc($result)) {
-							echo '<h1>';
-							echo "Driver name: ".$row['Fname']." ".$row['Lname'].'<br>';
-							echo "Driver numebr: ".$row['DriverID'];
-							echo '<br>'."Date of Birth: ".$row['DOB'].'<br>';
-							echo "Nationality: ".$row['Nationality'].'<br>';
-							echo "Pole positions: ".$row['Poles'].'<br>';
-							echo "Wins: ".$row['Wins'].'<br>';
-							echo "Championships: ".$row['Championships'].'<br>';
-							echo "Team: ".$row['TeamName'].'<br>';
-							echo "Description: ".$row['Description'].'<br>';
-							echo '</h1>';
+							echo '<p>';
+							echo '<b>'."Driver name: ".'</b>'.$row['Fname']." ".$row['Lname'].'<br>';
+							echo '<b>'."Driver numebr: ".'</b>'.$row['DriverID'].'<br>';
+							echo '<b>'."Date of Birth: ".'</b>'.$row['DOB'].'<br>';
+							echo '<b>'."Nationality: ".'</b>'.$row['Nationality'].'<br>';
+							echo '<b>'."Pole positions: ".'</b>'.$row['Poles'].'<br>';
+							echo '<b>'."Wins: ".'</b>'.$row['Wins'].'<br>';
+							echo '<b>'."Championships: ".'</b>'.$row['Championships'].'<br>';
+							echo '<b>'."Team: ".'</b>'.$row['TeamName'].'<br>';
+							echo '<b>'."Description: ".'</b>'.$row['Description'].'<br>';
+							echo '</p>';
 						}
 					?>
 			</div>
