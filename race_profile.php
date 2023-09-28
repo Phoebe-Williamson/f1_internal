@@ -169,8 +169,7 @@
 					}
 						$show_race = "SELECT * FROM Race, Track WHERE Race.TrackID = Track.TrackID AND RaceID='".$RaceID."'";
 					
-						/*gets information form race and track table based on raceid sent in from race page*/
-						/*$query = "SELECT * FROM Race, Track Where Race.TrackID = Track.TrackID AND RaceID ='".$RaceID."'"; */
+						/*gets information form race and track table based on raceid sent in from race page for races that have occured*/
 						$query_with_winner = "SELECT r.RaceName, r.DateTime, t.TrackName, t.Location, b.Fname, b.Lname FROM Race r, Track t, Driver d, Bio b Where r.TrackID = t.TrackID AND r.DriverID = d.DriverID AND d.BioID = b.BioID AND RaceID = '".$RaceID."' AND r.RaceID BETWEEN 1 AND 15";
 						$result = mysqli_query($conn, $query_with_winner);
 
@@ -182,11 +181,12 @@
 							echo '<h2>';
 							echo $row['TrackName']." - ".$row['Location'];
 							echo'</h2>';
-							echo '<p>'."Time of race: ".$row['DateTime']; /* displays date and time of race in caption area */	
+							echo '<p>'."Time of race: ".$row['DateTime']."  NZST (New Zealand Standard Time)"; /* displays date and time of race in caption area */	
 							echo '<br>'."Race Winner: ".$row['Fname'].' '.$row['Lname'];
 						}
 					
-					$query_without_winner = "SELECT r.RaceName, r.DateTime, t.TrackName, t.Location FROM Race r, Track t Where r.TrackID = t.TrackID AND r.RaceID ='".$RaceID."' BETWEEN 16 AND 23";
+					/*gets information form race and track table based on raceid sent in from race page for races that have not occured*/
+					$query_without_winner = "SELECT r.RaceName, r.DateTime, t.TrackName, t.Location FROM Race r, Track t Where r.TrackID = t.TrackID AND r.RaceID ='".$RaceID."' AND r.RaceID BETWEEN 16 AND 23";
 					$result_without_winner = mysqli_query($conn, $query_without_winner);
 
 						/* checks that results are in database*/
@@ -197,7 +197,7 @@
 							echo '<h2>';
 							echo $row['TrackName']." - ".$row['Location'];
 							echo'</h2>';
-							echo '<p>'."Time of race: ".$row['DateTime']; /* displays date and time of race in caption area */	
+							echo '<p>'."Time of race: ".$row['DateTime']."  NZST (New Zealand Standard Time)"; /* displays date and time of race in caption area */	
 							echo '<br>'."There is no race winner yet as race has not occured";
 						}
 					?>
