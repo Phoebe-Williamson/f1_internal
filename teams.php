@@ -15,7 +15,7 @@
 				</a>
 			</div>
 			<h1 class="title">				
-				F1 - Teams
+				Formula 1 - Teams
 			</h1>
 			<div class="search">
 				<h1>Search</h1>
