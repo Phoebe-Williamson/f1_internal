@@ -7,7 +7,7 @@
 	<head>
 		<link rel="stylesheet" href="styles.css">
 		<title>
-			Formula 1 - Add page
+			Formula 1 - Amin page
 		</title>
 	</head>
 
@@ -19,7 +19,7 @@
 				</a>
 			</div>
 			<h1 class="title">
-				f1 - home
+				Formula 1 - Admin page
 			</h1>
 			<div class="search">
 				<h1>Search</h1>
@@ -112,7 +112,6 @@
 			}
 			
 			$username = $_SESSION['Username'];
-			echo $username;
 			if(!$username){
 				header("Location: error1.php");
 			}
@@ -122,7 +121,6 @@
 			$user_rank_row = mysqli_fetch_assoc($user_rank_result);
 			
 			$user_rank = $user_rank_row['Rank']; //store the users rank as a variable
-			echo $user_rank;
 			$required_rank = "admin"; 
 			
 			if ($user_rank !== $required_rank) {
@@ -267,7 +265,6 @@
 			<?php
 				echo "</td>";
 				echo "<td><input type='submit'></td>";
-				echo "<td><a href='delete_driver.php?DriverID=" . $row['DriverID'] . "'>Delete</a></td>";
 				echo "</form></tr>";
 			}
 			?>
