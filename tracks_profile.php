@@ -167,17 +167,16 @@
 					$result = mysqli_query($conn, $query);
 
 					while ($row = mysqli_fetch_assoc($result)) {
-						echo '<h1>';
-						echo $row['TrackName']." - ".$row['Location'].'<br>';
-						echo "Circuit length: ".$row['Circuit_Length']."km".'<br>';
-						echo "Race distance: ".$row['Total_distance']."km".'<br>';
-						echo "Number of laps: ".$row['N_Laps'].'<br>';
-						echo "Year race was first held: ".$row['First_GP'].'<br>';
-						echo "Fastest lap time: ".$row['LR_Time'].'<br>';
-						echo "Driver who set fastest lap: ".$row['DriverID'].'<br>';
-						echo "Number of corners in circuit: ".$row['Corners'].'<br>';
-						echo "Number of DRS zones: ".$row['Drs_zones'].'<br>';
-						echo '<br>';
+						echo '<h1>'.$row['TrackName']." - ".$row['Location'].'</h1>';
+						echo '<p>'.'<b>'."Circuit length: ".'</b>'.$row['Circuit_Length']."km".'<br>';
+						echo '<b>'."Race distance: ".'</b>'.$row['Total_distance']."km".'<br>';
+						echo '<b>'."Number of laps: ".'</b>'.$row['N_Laps'].'<br>';
+						echo '<b>'."Year race was first held: ".'</b>'.$row['First_GP'].'<br>';
+						echo '<b>'."Fastest lap time: ".'</b>'.$row['LR_Time'].'<br>';
+						echo '<b>'."Driver who set fastest lap: ".'</b>'.$row['DriverID'].'<br>';
+						echo '<b>'."Number of corners in circuit: ".'</b>'.$row['Corners'].'<br>';
+						echo '<b>'."Number of DRS zones: ".'</b>'.$row['Drs_zones'].'<br>';
+						echo '</p>';
 					}
 				?>
 			</div>
