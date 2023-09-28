@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!-- Sets document language to english -->
+<html lang="en">
 <?php
 	session_start();
 	include '../f1_mysqli.php';
@@ -7,7 +9,7 @@
 	<head>
 		<link rel="stylesheet" href="styles.css">
 		<title>
-			Formula 1 - Amin page
+			Formula 1 - Admin page
 		</title>
 	</head>
 
@@ -310,5 +312,84 @@
 			}
 			?>
 		</table>
+		
+<h2>Add Race</h2>
+		<form action="insert_team.php" method="post">
+			Race Name: <input type="text" name="TeamName" placeholder='e.g. Redbull' required><br>
+			Track where race is: 
+			<select id="Track" name="TrackID">
+				<?php
+					$all_track_query = "SELECT * FROM Track";
+					$all_track_result = mysqli_query($conn, $all_track_query);
+
+					while ($drop_down_all_track_record = mysqli_fetch_assoc($all_track_result)) {
+					
+						echo "<option value='". $drop_down_all_track_record['TrackID'] . "'>";
+						echo $drop_down_all_track_record['TrackName'];
+						echo "</option>";
+					}
+				?>
+			</select><br>
+			Driver who won race: 
+			<select id="Driver" name="DriverID">
+				<?php
+					$all_driver_query = "SELECT * FROM Driver, Bio WHERE Driver.BioID = Bio.BioID";
+					$all_driver_result = mysqli_query($conn, $all_driver_query);
+
+					while ($drop_down_all_driver_record = mysqli_fetch_assoc($all_driver_result)) {
+					
+						echo "<option value='". $drop_down_all_driver_record['DriverID'] . "'>";
+						echo $drop_down_all_driver_record['Fname']." ".$drop_down_all_driver_record['Lname'];
+						echo "</option>";
+					}
+				?>
+			</select><br>
+			<input type="submit" value="Add team"> <input type="reset" value="Reset All">
+		</form>
+		
+	<h2>Update Race table</h2>
+		<table>
+			<tr>
+				<th>Race name</th>
+				<th>Date and Time of race</th>
+				<th>Driver who won race</th>
+			</tr>
+		<?php
+		/* updating the team table */
+        	$update_race = "SELECT * FROM Race";
+        	$update_race_record = mysqli_query($conn, $update_race);
+
+			while ($row = mysqli_fetch_array($update_race_record)) {
+				echo "<tr><form action='update_race.php' method='post'>";
+				echo "<td><input type='text' name='RaceName' value='" . $row['RaceName'] . "'></td>";
+				echo "<td><input type='text' name='DateTime' value='" . $row['DateTime'] . "'></td>";
+				echo "<input type='hidden' name='RaceID' value='" . $row['RaceID'] . "'>";
+				echo "<td>";
+			?>	
+				<select id="Driver" name="DriverID">
+				<!-- options -->
+				<?php
+				$driver_query = "SELECT * FROM Driver, Bio WHERE Driver.BioID = Bio.BioID";
+				$driver_result = mysqli_query($conn, $driver_query);
+
+				while ($update_driver_record = mysqli_fetch_assoc($driver_result)) {
+					$defaultOption = $row['DriverID'];
+					$optionId = $update_driver_record['DriverID'];
+					$optionName = $update_driver_record['Fname']." ".$update_driver_record['Lname'];
+					$isSelected = ($optionId == $defaultOption) ? 'selected' : '';
+
+					echo "<option value='$optionId' $isSelected>$optionName</option>";
+				}
+				?>
+				</select>
+			<?php
+				echo "</td>";
+				echo "<td><input type='submit'></td>";
+				echo "<td><a href='delete_race.php?RaceID=" . $row['RaceID'] . "'>Delete</a></td>";
+				echo "</form></tr>";
+			}
+			?>
+		</table>
+		
 		
 		
