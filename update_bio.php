@@ -145,9 +145,11 @@
 		
 		if(!mysqli_query($conn, $update_bio)) {
 			echo 'Not updated bio '.mysqli_error($conn);
+			header("refresh:15, url=add_page.php");
 		} else {
 			echo 'Updated bio';
+			header("refresh:2, url=add_page.php");
 		}	
-		header("refresh:2, url=add_page.php");
+		
 
 	?>	
