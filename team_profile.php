@@ -15,7 +15,7 @@
 				</a>
 			</div>
 			<h1 class="title">
-				f1 - Team Profile
+				Formula 1 - Team Profile
 			</h1>
 			<div class="search">
 				<h1>Search</h1>
@@ -136,7 +136,8 @@
 			</nav>
 		</header>
 		<a class="two" href="teams.php">←Back</a>
-		<div class="polaroid-gallery">
+		<grid>
+			<div class="profile1">
 				<?php
 				if(isset($_GET['TeamID'])) {
 					$TeamID = $_GET['TeamID'];
@@ -144,10 +145,7 @@
 					$TeamID=1;
 				}
 					$show_team = "SELECT * FROM Team WHERE TeamID='".$TeamID."'";
-			
-				echo $TeamID;
-			
-			
+
 					$query = "SELECT t.TeamID, t.TeamName, t.TPFname, t.TPLname, t.Location, t.Image  FROM Team t Where  t.TeamID= '".$TeamID."'";
 					$result = mysqli_query($conn, $query);
 
@@ -163,8 +161,11 @@
 						echo '</div>';
 					}
 				?>
-			
-		</div>		
+			</div>
+			<div class="profile2">
+				
+			</div>	
+		</grid>		
 	</body>
 </html>
 
