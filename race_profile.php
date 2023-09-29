@@ -155,7 +155,7 @@
 
 						/* checks that results are in database*/
 						while ($row = mysqli_fetch_assoc($result)) {
-							echo '<img src="Images/' . $row['TrackImage'] . '" width="450" height="253.125" alt="' . $row['TrackImage'] . '">';
+							echo '<img src="Images/' . $row['TrackImage'] . '"  width="750" height="421.875" alt="' . $row['TrackImage'] . '">';
 						}
 					
 					?>
@@ -175,14 +175,10 @@
 
 						/* checks that results are in database*/
 						while ($row = mysqli_fetch_assoc($result)) {
-							echo '<h1>';
-							echo $row['RaceName'];
-							echo '</h1>';
-							echo '<h2>';
-							echo $row['TrackName']." - ".$row['Location'];
-							echo'</h2>';
-							echo '<p>'."Time of race: ".$row['DateTime']."  NZST (New Zealand Standard Time)"; /* displays date and time of race in caption area */	
-							echo '<br>'."Race Winner: ".$row['Fname'].' '.$row['Lname'];
+							echo '<h1>'.$row['RaceName'].'</h1>';
+							echo '<h2>'.$row['TrackName']." - ".$row['Location'].'</h2>';
+							echo '<p>'.'<b>'."Time of race: ".'</b>'.$row['DateTime']."  NZST (New Zealand Standard Time)".'<br>'; /* displays date and time of race in caption area */	
+							echo '<b>'."Race Winner: ".'</b>'.$row['Fname'].' '.$row['Lname'];
 						}
 					
 					/*gets information form race and track table based on raceid sent in from race page for races that have not occured*/
@@ -191,14 +187,10 @@
 
 						/* checks that results are in database*/
 						while ($row = mysqli_fetch_assoc($result_without_winner)) {
-							echo '<h1>';
-							echo $row['RaceName'];
-							echo '</h1>';
-							echo '<h2>';
-							echo $row['TrackName']." - ".$row['Location'];
-							echo'</h2>';
-							echo '<p>'."Time of race: ".$row['DateTime']."  NZST (New Zealand Standard Time)"; /* displays date and time of race in caption area */	
-							echo '<br>'."There is no race winner yet as race has not occured";
+							echo '<h1>'.$row['RaceName'].'</h1>';
+							echo '<h2>'.$row['TrackName']." - ".$row['Location'].'</h2>';
+							echo '<p>'.'<b>'."Time of race: ".'</b>'.$row['DateTime']."  NZST (New Zealand Standard Time)".'<br>'; /* displays date and time of race in caption area */	
+							echo '<b>'."There is no race winner yet as race has not occured";
 						}
 					?>
 					
