@@ -150,23 +150,29 @@
 					$result = mysqli_query($conn, $query);
 
 					while ($row = mysqli_fetch_assoc($result)) {
-						echo '<div class="polaroid">';
-						echo '<img src="Images/' . $row['Image'] . '" height="168.75px" alt="' . $row['Image'] . '">';
-						echo '<div class="caption">';
-						echo $row['TeamName']." - ".$row['Location'];
-						echo '<br>';
-						echo "Team Principle - ";
-						echo $row['TPFname']." ".$row['TPLname'];
-						echo '</div>';
-						echo '</div>';
+						echo '<img src="Images/' . $row['Image'] . '"width="700" height="500px" alt="' . $row['Image'] . '">';
 					}
 				?>
 			</div>
 			<div class="profile2">
-				
+				<?php
+				if(isset($_GET['TeamID'])) {
+					$TeamID = $_GET['TeamID'];
+				} else {
+					$TeamID=1;
+				}
+					$show_team = "SELECT * FROM Team WHERE TeamID='".$TeamID."'";
+
+					$query = "SELECT t.TeamID, t.TeamName, t.TPFname, t.TPLname, t.Location, t.Image  FROM Team t Where  t.TeamID= '".$TeamID."'";
+					$result = mysqli_query($conn, $query);
+
+					while ($row = mysqli_fetch_assoc($result)) {
+						echo '<p>'.'<b>'."Team Name: ".'</b>'.$row['TeamName'].'<br>';
+						echo '<b>'."Team Headquarters Location: ".'</b>'.$row['Location'].'<br>';
+						echo '<b>'."Team Principle: ".'</b>'.$row['TPFname']." ".$row['TPLname'];
+					}
+				?>
 			</div>	
 		</grid>		
 	</body>
 </html>
-
-
