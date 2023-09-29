@@ -145,9 +145,11 @@
 		
 		if(!mysqli_query($conn, $update_team)) {
 			echo 'Not updated team table '.mysqli_error($conn);
+			header("refresh:15, url=add_page.php");
 		} else {
 			echo 'Updated team table';
+			header("refresh:2, url=add_page.php");
 		}	
-		header("refresh:50, url=add_page.php");
+		
 
 	?>	
