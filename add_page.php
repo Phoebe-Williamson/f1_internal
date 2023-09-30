@@ -314,8 +314,9 @@
 		</table>
 		
 <h2>Add Race</h2>
-		<form action="insert_team.php" method="post">
-			Race Name: <input type="text" name="TeamName" placeholder='e.g. Redbull' required><br>
+		<form action="insert_race.php" method="post">
+			Race Name: <input type="text" name="RaceName" placeholder='e.g. Bahrain grand prix' required><br>
+			Date and time of race: <input type="datetime-local" name="DateTime" placeholder='e.g. 2023-06-30 17:00:00' required><br>
 			Track where race is: 
 			<select id="Track" name="TrackID">
 				<?php
@@ -344,7 +345,7 @@
 					}
 				?>
 			</select><br>
-			<input type="submit" value="Add team"> <input type="reset" value="Reset All">
+			<input type="submit" value="Add Race"> <input type="reset" value="Reset All">
 		</form>
 		
 	<h2>Update Race table</h2>
@@ -352,10 +353,11 @@
 			<tr>
 				<th>Race name</th>
 				<th>Date and Time of race</th>
+				<th>Track race occured at</th>
 				<th>Driver who won race</th>
 			</tr>
 		<?php
-		/* updating the team table */
+		/* updating the race table */
         	$update_race = "SELECT * FROM Race";
         	$update_race_record = mysqli_query($conn, $update_race);
 
@@ -364,6 +366,26 @@
 				echo "<td><input type='text' name='RaceName' value='" . $row['RaceName'] . "'></td>";
 				echo "<td><input type='text' name='DateTime' value='" . $row['DateTime'] . "'></td>";
 				echo "<input type='hidden' name='RaceID' value='" . $row['RaceID'] . "'>";
+				echo "<td>";
+			?>	
+				<select id="Track" name="TrackID">
+				<!-- options -->
+				<?php
+				$track_query = "SELECT * FROM Race, Track WHERE Race.TrackID = Track.TrackID";
+				$track_result = mysqli_query($conn, $track_query);
+
+				while ($update_track_record = mysqli_fetch_assoc($track_result)) {
+					$defaultOption = $row['TrackID'];
+					$optionId = $update_track_record['TrackID'];
+					$optionName = $update_track_record['TrackName'];
+					$isSelected = ($optionId == $defaultOption) ? 'selected' : '';
+
+					echo "<option value='$optionId' $isSelected>$optionName</option>";
+				}
+				?>
+				</select>
+			<?php
+				echo "</td>";
 				echo "<td>";
 			?>	
 				<select id="Driver" name="DriverID">
