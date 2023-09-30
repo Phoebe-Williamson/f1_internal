@@ -313,6 +313,39 @@
 			?>
 		</table>
 		
+<h2>Add Track</h2>
+		<form action="insert_track.php" method="post">
+			Track Name: <input type="text" name="TrackName" placeholder='e.g. Bahrain international circuit' required><br>
+			Track Location: <input type="text" name="Location" placeholder='e.g. Sakhir, Bahrain' required><br>
+			Length of circuit: <input type="text" name="Circuit_Length" placeholder='e.g. 3.549km' required><br>
+			Total race distance: <input type="text" name="Total_distance" placeholder='e.g. 308.593km' required><br>
+			Number of laps: <input type="text" name="N_Laps" placeholder='e.g. 63' required><br>
+			Year of first race: <input type="text" name="First_GP" placeholder='e.g. 2002' required><br>
+			Lap record time: <input type="text" name="LR_Time" placeholder='e.g. 1:12.429' required><br>
+			Driver who set fastest lap: 
+			<select id="Driver" name="DriverID">
+				<?php
+					$all_driver_query = "SELECT * FROM Driver, Bio WHERE Driver.BioID = Bio.BioID";
+					$all_driver_result = mysqli_query($conn, $all_driver_query);
+
+					while ($drop_down_all_driver_record = mysqli_fetch_assoc($all_driver_result)) {
+					
+						echo "<option value='". $drop_down_all_driver_record['DriverID'] . "'>";
+						echo $drop_down_all_driver_record['Fname']." ".$drop_down_all_driver_record['Lname'];
+						echo "</option>";
+					}
+				?>
+			</select><br>
+			Number of corners: <input type="text" name="Corners" placeholder='e.g. 13' required><br>
+			Number of drs zones: <input type="text" name="Drs_zones" placeholder='e.g. 2' required><br>
+			Image track: <input type="file" id="myfile" name="TrackImage" required><br>
+			Image of circuit: <input type="file" id="myfile" name="CircuitImage" required><br>
+			
+			<input type="submit" value="Add Race"> <input type="reset" value="Reset All">
+		</form>
+		
+	
+		
 <h2>Add Race</h2>
 		<form action="insert_race.php" method="post">
 			Race Name: <input type="text" name="RaceName" placeholder='e.g. Bahrain grand prix' required><br>
@@ -412,6 +445,9 @@
 			}
 			?>
 		</table>
+		
+		
+		
 		
 		
 		
