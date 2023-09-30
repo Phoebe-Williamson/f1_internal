@@ -160,6 +160,7 @@
 				<a class="one" href="driver.php">Drivers</a>
 				<a class="one" href="teams.php"> Teams</a>
 				<a class="one" href="tracks.php"> Tracks</a>
+				<a class="one" href="race.php"> Races</a>
     			<link rel="stylesheet" type="text/css" href="styles.css">
 			</nav>
 		</header>
@@ -344,7 +345,69 @@
 			<input type="submit" value="Add Race"> <input type="reset" value="Reset All">
 		</form>
 		
-	
+	<h2>Update track table</h2>
+		<table>
+			<tr>
+				<th>Track name</th>
+				<th>Track Location</th>
+				<th>Circuit length</th>
+				<th>Total race distance</th>
+				<th>Number of laps</th>
+				<th>Year of first race</th>
+				<th>Lap record time</th>
+				<th>Driver who set fastest lap</th>
+				<th>Number of corners</th>
+				<th>Number of DRS zones</th>
+				<th>Track Image</th>
+				<th>Circuit Image</th>
+				
+				
+			</tr>
+		<?php
+		/* updating the race table */
+        	$update_track = "SELECT * FROM Track";
+        	$update_track_record = mysqli_query($conn, $update_track);
+
+			while ($row = mysqli_fetch_array($update_track_record)) {
+				echo "<tr><form action='update_track.php' method='post'>";
+				echo "<input type='hidden' name='TrackID' value='" . $row['TrackID'] . "'>";
+				echo "<td><input type='text' name='RaceName' value='" . $row['TrackName'] . "'></td>";
+				echo "<td><input type='text' name='Location' value='" . $row['Location'] . "'></td>";
+				echo "<td><input type='text' name='Circuit_Length' value='" . $row['Circuit_Length'] . "'></td>";
+				echo "<td><input type='text' name='Total_distance' value='" . $row['Total_distance'] . "'></td>";
+				echo "<td><input type='text' name='N_Laps' value='" . $row['N_Laps'] . "'></td>";
+				echo "<td><input type='text' name=First_GP'' value='" . $row['First_GP'] . "'></td>";
+				echo "<td><input type='text' name=LR_Time'' value='" . $row['LR_Time'] . "'></td>";
+				echo "<td>";
+			?>	
+				<select id="Driver" name="DriverID">
+				<!-- options -->
+				<?php
+				$driver_query = "SELECT * FROM Driver, Bio WHERE Driver.BioID = Bio.BioID";
+				$driver_result = mysqli_query($conn, $driver_query);
+
+				while ($update_driver_record = mysqli_fetch_assoc($driver_result)) {
+					$defaultOption = $row['DriverID'];
+					$optionId = $update_driver_record['DriverID'];
+					$optionName = $update_driver_record['Fname']." ".$update_driver_record['Lname'];
+					$isSelected = ($optionId == $defaultOption) ? 'selected' : '';
+
+					echo "<option value='$optionId' $isSelected>$optionName</option>";
+				}
+				?>
+				</select>
+			<?php
+				echo "</td>";
+				echo "<td><input type='text' name='Corners' value='" . $row['Corners'] . "'></td>";
+				echo "<td><input type='text' name='Drs_zones' value='" . $row['Drs_zones'] . "'></td>";
+				echo "<td><input type='text' name='TrackImage' value='" . $row['TrackImage'] . "'></td>";
+				echo "<td><input type='text' name='CircuitImage' value='" . $row['CircuitImage'] . "'></td>";
+				echo "<td><input type='submit'></td>";
+				echo "<td><a href='delete_race.php?TrackID=" . $row['TrackID'] . "'>Delete</a></td>";
+				echo "</form></tr>";
+			}
+			?>
+		</table>
 		
 <h2>Add Race</h2>
 		<form action="insert_race.php" method="post">
