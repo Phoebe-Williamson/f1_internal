@@ -121,7 +121,30 @@
 			</div>
 			<!-- Link to login page -->
 			<div class="login">
-				<a class='one' href='login.php'>Login</a>
+				<?php
+					//checks to see if logged in
+					if((!isset($_SESSION['Logged_in'])) or $_SESSION['Logged_in'] != 1){
+					echo "Not logged in";
+					echo "<a class='one' href='login.php'>Login</a>"; // displays if not logged in
+					}
+					else {
+					echo "Logged In: ".$_SESSION['Username']; // shows username of who is logged in
+					echo "<a class='one' href='process_logout.php'>Logout</a>"; // dislpayed if loffed in
+					
+						$username = $_SESSION['Username'];
+						
+					$user_rank_query = "SELECT * FROM Users WHERE Username = '$username'";
+					$user_rank_result = mysqli_query($conn, $user_rank_query);
+					$user_rank_row = mysqli_fetch_assoc($user_rank_result);
+
+					$user_rank = $user_rank_row['Rank']; //store the users rank as a variable
+					$required_rank = "admin"; 
+						
+						if($user_rank == $required_rank){
+							echo "<a class='one' href='add_page.php'>Admin</a>"; // hsows admin tag if logged in
+						}	
+					}
+				?>
 			</div>
 			<!-- Nav bar links to all of the pages -->
 			<nav>
@@ -133,7 +156,7 @@
 			</nav>
 		</header>
 		<?php
-		// tells the user that their login attempt was unsuccessful
+		// tells user that their login attempt was unsucsessful
 		echo "Username and password do not match or account has not been created";
 		header("refresh:5; url=login.php");
 
