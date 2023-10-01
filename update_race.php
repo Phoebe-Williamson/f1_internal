@@ -157,15 +157,15 @@
 			</nav>
 		</header>
 		<?php
-		// query to insert race
+		// query to update race
 		$update_race = "UPDATE Race SET RaceID='" . $_POST['RaceID'] . "', DateTime='" . $_POST['DateTime'] ."', TrackID='" . $_POST['TrackID'] . "', DriverID='" . $_POST['DriverID']. "' WHERE RaceID='" . $_POST['RaceID']. "'";
 		
-		//checks if insertion failed
+		//checks if updatefailed
 		if(!mysqli_query($conn, $update_race)) {
 			echo 'Not updated race table '.mysqli_error($conn);
 			header("refresh:15, url=add_page.php");
 		} else {
-			//checks if insertion worked
+			//checks if update worked
 			echo 'Updated race table';
 			header("refresh:2, url=add_page.php");
 		}	
