@@ -18,7 +18,7 @@
 		<header> 
 			<div class="logo">
 				<!--Image acts as a link to the home page -->
-				<a class="two" href="home.ph">
+				<a class="two" href="home.php">
             		<img src="Images/F1-logo.png" alt="F1 logo" height="150" width="270">	
 				</a>
 			</div>
