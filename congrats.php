@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--Seet document language to english -->
 <HTML lang="en">
 <?php
 /*starts the session and has databse connection so queries work*/
@@ -152,6 +153,7 @@
 				<a class="one" href="driver.php">Drivers</a>
 				<a class="one" href="teams.php"> Teams</a>
 				<a class="one" href="tracks.php"> Tracks</a>
+				<a class="one" href="race.php"> Races</a>
     			<link rel="stylesheet" type="text/css" href="styles.css">
 			</nav>
 		</header>
