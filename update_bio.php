@@ -158,15 +158,15 @@
 		</header>
 		<?php
 		
-		// query to inser to bio tabls
+		// query to update bio table
 		$update_bio = "UPDATE Bio SET Fname='" . $_POST['Fname'] . "', Lname='" . $_POST['Lname'] ."', DOB='". $_POST['DOB'] . "', Nationality='" . $_POST['Nationality']  . "', Description='" . $_POST['Description']. "' WHERE BioID='" . $_POST['BioID']. "'";
 		
-		// checks to see if not inseterd
+		// checks to see if not updates
 		if(!mysqli_query($conn, $update_bio)) {
 			echo 'Not updated bio '.mysqli_error($conn);
 			header("refresh:15, url=add_page.php");
 		} else {
-			// if insertion works
+			// if update works
 			echo 'Updated bio';
 			header("refresh:2, url=add_page.php");
 		}	
