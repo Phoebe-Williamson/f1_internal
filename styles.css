@@ -156,7 +156,7 @@ a.three:hover{
 
 /*link to my create acc page from login page and from creat acc page to login page*/
 a.four {
-	font-size: S17px;
+	font-size: 17px;
     text-decoration: none;
 	color: blue;
 }
@@ -164,7 +164,6 @@ a.four {
 /*link to my create acc page from login page and from creat acc page to login page */
 a.four:hover {
 	color: purple; /*text goes purple when hovered over*/
-	text-decoration: bold;
 }
 
 /*grid for my polariods on all pages*/
