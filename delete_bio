@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <HTML lang="en">
 <?php
-/*starts the session an dhas dtatabse connection so queries work*/
+/*starts the session and has databse connection so queries work*/
 	session_start();
 	include '../f1_mysqli.php';
 ?>
@@ -156,16 +156,16 @@
 			</nav>
 		</header>
 	<?php
+		// query to delete race
+		$delete_race = "DELETE FROM Race WHERE RaceID='$_GET[RaceID]'";
 		
-		// query to delete from bio table (also delets for driver table)
-		$delete_bio = "DELETE FROM Bio WHERE BioID='$_GET[BioID]'";
-		
-		// checks to see if query failed
-		if(!mysqli_query($conn, $delete_bio)) {
-			echo 'Not deleted bio'.mysqli_error($conn);
+		// to see if track deleteing failed
+		if(!mysqli_query($conn, $delete_race)) {
+			echo 'Race not deleted: '.mysqli_error($conn);
+			header("refresh:20, url = add_page.php");
 		} else {
-			// if query worked
-			echo 'Deleted bio';
+			// if track deletion worked
+			echo 'Race deleted';
 			header("refresh:3, url = add_page.php");
 		}
 	
