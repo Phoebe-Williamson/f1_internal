@@ -12,7 +12,7 @@
 		<meta charset="utf-8">
 		<!-- Creates title -->
 		<title>
-			Formula 1 
+			Formula 1 - Team Profile
 		</title>
 	</head>
 	<body>
@@ -25,7 +25,7 @@
 			</div>
 			<!-- Is the header section  -->
 			<h1 class="title">
-				Formula 1 
+				Formula 1 - Team Profile
 			</h1>
 			<!-- Search bar section -->
 			<div class="search">
