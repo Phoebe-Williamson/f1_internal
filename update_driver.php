@@ -157,15 +157,15 @@
 			</nav>
 		</header>
 		<?php
-		// query to insert driver
+		// query to update driver
 		$update_driver = "UPDATE Driver SET DriverID='" . $_POST['DriverID'] . "', Poles='" . $_POST['Poles'] ."', Wins='". $_POST['Wins'] . "', Championships='" . $_POST['Championships']  . "', TeamID='" . $_POST['TeamID']. "' WHERE DriverID='" . $_POST['DriverID']. "'";
 		
-		// checks to see if insertion failed
+		// checks to see if update failed
 		if(!mysqli_query($conn, $update_driver)) {
 			echo 'Not updated driver table '.mysqli_error($conn);
 			header("refresh:15, url=add_page.php");
 		} else {
-			// if insertions works
+			// if update works
 			echo 'Updated driver table';
 			header("refresh:2, url=add_page.php");
 		}	
