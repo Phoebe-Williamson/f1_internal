@@ -5,7 +5,7 @@ all they need to know. The comments should usually include at least:
 ------------------------------------------------------------------------
 
 PROJECT TITLE: Formula 1 
-DESCRIPTION: This is a website where the drivers, teams, tracks and races of the 2023 Formula 1 season are displayed. 
+DESCRIPTION: This is a website where the drivers, teams, tracks and races of the 2023 Formula 1 season are displayed. (All images and data are copyright to Formula1.com)
 DATE OF SUBMISSION: 2/10/2023
 AUTHOR: Phoebe Williamson
 ASSESSMENT FOLDER: Formula1
