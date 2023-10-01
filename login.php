@@ -12,7 +12,7 @@
 		<meta charset="utf-8">
 		<!-- Creates title -->
 		<title>
-			Formula 1 - login
+			Formula 1 
 		</title>
 	</head>
 	<body>
@@ -25,7 +25,7 @@
 			</div>
 			<!-- Is the header section  -->
 			<h1 class="title">
-				Formula 1 - login
+				Formula 1 
 			</h1>
 			<!-- Search bar section -->
 			<div class="search">
@@ -133,20 +133,9 @@
     			<link rel="stylesheet" type="text/css" href="styles.css">
 			</nav>
 		</header>
-		
-		<!-- Login form whcih sends username and password to process_login -->
-		<div class="login_page">
-			<h2>Login Here </h2>
-			<form name='login_form' id='login+form' method='post' action='process_login.php'>
-			<label for='Username'>Username:</label>
-			<input type='text' name='Username' required><br>
-			<label for='Password'>Password:</label>
-			<input type='text' name='Password' required><br>
-			<input type='submit' name='submit' id='submit' value='Log In'>
-			</form>
+		<?php
+		// tells user that they have logged in
+		echo "You have logged in";
+		header("refresh:2; url=home.php");
 
-			<!-- Link to create account page -->
-			<p> Don't have an account? <a class="four" href="create_acc.php"> Create one here</a> </p> 
-		</div>
-	</body>
-</html>
+		?>
