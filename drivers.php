@@ -1,26 +1,35 @@
 <!DOCTYPE html>
+<HTML lang="en">
 <?php
+/*starts the session and has databse connection so queries work*/
 	session_start();
 	include '../f1_mysqli.php';
 ?>
-<html>
 	<head>
+		<!-- Link to style sheet  -->
 		<link rel="stylesheet" href="styles.css">
+		<meta charset="utf-8">
+		<!-- Creates title -->
+		<title>
+			Formula 1 - Drivers
+		</title>
 	</head>
 	<body>
 		<header> 
 			<div class="logo">
-				<!Logo link for home page>
-				<a class="two" href="home.php">
+				<!--Image acts as a link to the home page -->
+				<a class="two" href="home.ph">
             		<img src="Images/F1-logo.png" alt="F1 logo" height="150" width="270">	
 				</a>
 			</div>
+			<!-- Is the header section  -->
 			<h1 class="title">
 				Formula 1 - Drivers
 			</h1>
+			<!-- Search bar section -->
 			<div class="search">
-				<!search area>
 				<h1>Search</h1>
+				<!-- Starts the search query -->
 				<form method="post">
 					<input type="text" name="search">
 					<input type="submit" name="submit" value="Search" class="search_button">
@@ -29,32 +38,35 @@
 					/* searches database to see if the input matches */
 					if (isset($_POST['search'])) {
 						$search = $_POST['search'];
-
+						/*Query based on search like first name*/
 						$search_query_fname = "SELECT DISTINCT b.Fname, b.Lname, d.DriverID, t.TeamName
 											  FROM Bio b, Driver d, Team t
 											  WHERE b.BioID = d.BioID
 											  AND t.TeamID = d.TeamID
 											  AND Fname LIKE '%$search%'";
 						
+						/*Query based on search like last name*/
 						$search_query_lname = "SELECT DISTINCT b.Fname, b.Lname, d.DriverID, t.TeamName
 											  FROM Bio b, Driver d, Team t
 											  WHERE b.BioID = d.BioID
 											  AND t.TeamID = d.TeamID
 											  AND Lname LIKE '%$search%'";
 						
+						/*Query based on search like driver number*/
 						$search_query_DriverID = "SELECT DISTINCT b.Fname, b.Lname, d.DriverID, t.TeamName
 											  FROM Bio b, Driver d, Team t
 											  WHERE b.BioID = d.BioID
 											  AND t.TeamID = d.TeamID
 											  AND DriverID LIKE '%$search%'";
 						
+						/*Query based on seach like team name*/
 						$search_query_teamname = "SELECT DISTINCT b.Fname, b.Lname, d.DriverID, t.TeamName
 											  FROM Bio b, Driver d, Team t
 											  WHERE b.BioID = d.BioID
 											  AND t.TeamID = d.TeamID
 											  AND TeamName LIKE '%$search%'";
 						
-
+						/*turns queries into reusults*/
 						$search_query_result1 = mysqli_query($conn, $search_query_fname);
 						$search_query_result2 = mysqli_query($conn, $search_query_lname);
 						$search_query_result3 = mysqli_query($conn, $search_query_DriverID);
@@ -76,6 +88,7 @@
 								echo "<br>";
 							}
 						while ($row = mysqli_fetch_array($search_query_result2)) {
+							/* prints search results */
 								echo "Driver and number: ";
 								echo $row['Fname']." ".$row['Lname']." - ".$row['DriverID'];
 								echo "<br>";
@@ -84,6 +97,7 @@
 								echo "<br>";
 							}
 						while ($row = mysqli_fetch_array($search_query_result3)) {
+							/* prints search results */
 								echo "Driver and number: ";
 								echo $row['Fname']." ".$row['Lname']." - ".$row['DriverID'];
 								echo "<br>";
@@ -92,6 +106,7 @@
 								echo "<br>";
 							}
 						while ($row = mysqli_fetch_array($search_query_result4)) {
+							/* prints search results */
 								echo "Driver and number: ";
 								echo $row['Fname']." ".$row['Lname']." - ".$row['DriverID'];
 								echo "<br>";
@@ -102,10 +117,13 @@
 						}
 					}
 							?>
+			
 			</div>
+			<!-- Link to login page -->
 			<div class="login">
-				<a class="one" href="login.php">Login</a>
+				<a class='one' href='login.php'>Login</a>
 			</div>
+			<!-- Nav bar links to all of the pages -->
 			<nav>
 				<a class="one" href="home.php">Home</a>
 				<a class="one" href="driver.php">Drivers</a>
@@ -113,11 +131,14 @@
 				<a class="one" href="tracks.php"> Tracks</a>
     			<link rel="stylesheet" type="text/css" href="styles.css">
 			</nav>
+			<!-- Creates driver nav-->
 			<div class="driver_nav">
 				<?php
+					// query all of data from bio and driver tables
 					$query = "SELECT * FROM Bio, Driver Where Bio.BioId = Driver.BioID AND Image is NOT NULL";
 					$result = mysqli_query($conn, $query);
-				
+					
+					// displays all of the drivers numebrs as a link to the driver profile page
 					while ($row = mysqli_fetch_assoc($result)) {
 						echo '<a class="one" href="profile.php?DriverID='.$row['DriverID'].'"> ';
 						echo $row['DriverID'];
@@ -126,16 +147,18 @@
 				?>
 			</div>	
 		</header>
+		<!-- Creates grid for polariods to sit in-->
 		<div class="polaroid-gallery">
 				<?php
-					/* show all drivers */
+					/* query to show all drivers */
 					$query = "SELECT * FROM Bio, Driver Where Bio.BioId = Driver.BioID AND Image is NOT NULL";
 					$result = mysqli_query($conn, $query);
-			    
+			    		
+						// Shows all drivers
 						while ($row = mysqli_fetch_assoc($result)) {
-							echo '<div class="polaroid">';
+							echo '<div class="polaroid">'; // creats div for each polariod 
 							echo '<a class="three" href="profile.php?DriverID='.$row['DriverID'].'">';		/* respond to user click and sends driver id */
-							echo "<form name='drivers_form' id='drivers_form' method='get' action='profile.php'>";
+							echo "<form name='drivers_form' id='drivers_form' method='get' action='profile.php'>"; // goes to profile page
 							echo "<input type='hidden' name='DriverID' value='" . $row['DriverID'] . "'>";
 							echo "</form>";
 							echo '<img src="Images/' . $row['Image'] . '" width="300" height="300" alt="' . $row['Image'] . '">';
@@ -148,4 +171,3 @@
 					?>
 		</div>		
 	</body>
-</html>
