@@ -5,14 +5,13 @@
 	session_start();
 	include '../f1_mysqli.php';
 ?>
-<html>
 	<head>
 		<!-- Link to style sheet  -->
 		<link rel="stylesheet" href="styles.css">
 		<meta charset="utf-8">
 		<!-- Creates title -->
 		<title>
-			Formula 1 
+			Formula 1 - login
 		</title>
 	</head>
 	<body>
@@ -25,7 +24,7 @@
 			</div>
 			<!-- Is the header section  -->
 			<h1 class="title">
-				Formula 1 
+				Formula 1 - login
 			</h1>
 			<!-- Search bar section -->
 			<div class="search">
@@ -133,9 +132,19 @@
     			<link rel="stylesheet" type="text/css" href="styles.css">
 			</nav>
 		</header>
-		<?php
-		// tells user that they have logged in
-		echo "You have logged in";
-		header("refresh:2; url=home.php");
+		
+		<!-- Login form whcih sends username and password to process_login -->
+		<div class="login_page">
+			<h2>Login Here </h2>
+			<form name='login_form' id='login+form' method='post' action='process_login.php'>
+			<label for='Username'>Username:</label>
+			<input type='text' name='Username' required><br>
+			<label for='Password'>Password:</label>
+			<input type='text' name='Password' required><br>
+			<input type='submit' name='submit' id='submit' value='Log In'>
+			</form>
 
-		?>
+			<!-- Link to create account page -->
+			<p> Don't have an account? <a class="four" href="create_acc.php"> Create one here</a> </p> 
+		</div>
+	</body>
