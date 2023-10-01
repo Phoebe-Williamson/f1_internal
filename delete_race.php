@@ -152,19 +152,21 @@
 				<a class="one" href="driver.php">Drivers</a>
 				<a class="one" href="teams.php"> Teams</a>
 				<a class="one" href="tracks.php"> Tracks</a>
+				<a class="one" href="race.php"> Races</a>
     			<link rel="stylesheet" type="text/css" href="styles.css">
 			</nav>
 		</header>
 	<?php
-		// query to delete track
-		$delete_team = "DELETE FROM Team WHERE TeamID='$_GET[TeamID]'";
+		// query to delete race
+		$delete_race = "DELETE FROM Race WHERE RaceID='$_GET[RaceID]'";
 		
-		// checks if track deletion failed
-		if(!mysqli_query($conn, $delete_team)) {
-			echo 'Not deleted ream'.mysqli_error($conn);
+		// to see if track deleteing failed
+		if(!mysqli_query($conn, $delete_race)) {
+			echo 'Race not deleted: '.mysqli_error($conn);
+			header("refresh:20, url = add_page.php");
 		} else {
 			// if track deletion worked
-			echo 'Deleted team';
+			echo 'Race deleted';
 			header("refresh:3, url = add_page.php");
 		}
 	
