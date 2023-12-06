@@ -191,7 +191,7 @@
 						$show_race = "SELECT * FROM Race, Track WHERE Race.TrackID = Track.TrackID AND RaceID='".$RaceID."'";
 					
 						/*gets information form race and track table based on raceid sent in from race page for races that have occured*/
-						$query_with_winner = "SELECT r.RaceName, r.DateTime, t.TrackName, t.Location, b.Fname, b.Lname FROM Race r, Track t, Driver d, Bio b Where r.TrackID = t.TrackID AND r.DriverID = d.DriverID AND d.BioID = b.BioID AND RaceID = '".$RaceID."' AND r.RaceID BETWEEN 1 AND 17";
+						$query_with_winner = "SELECT r.RaceName, r.DateTime, t.TrackName, t.Location, b.Fname, b.Lname FROM Race r, Track t, Driver d, Bio b Where r.TrackID = t.TrackID AND r.DriverID = d.DriverID AND d.BioID = b.BioID AND RaceID = '".$RaceID."' AND r.RaceID BETWEEN 1 AND 23";
 						$result = mysqli_query($conn, $query_with_winner);
 
 						/* checks that results are in database*/
@@ -202,17 +202,7 @@
 							echo '<b>'."Race Winner: ".'</b>'.$row['Fname'].' '.$row['Lname'];
 						}
 					
-					/*gets information form race and track table based on raceid sent in from race page for races that have not occured*/
-					$query_without_winner = "SELECT r.RaceName, r.DateTime, t.TrackName, t.Location FROM Race r, Track t Where r.TrackID = t.TrackID AND r.RaceID ='".$RaceID."' AND r.RaceID BETWEEN 18 AND 23";
-					$result_without_winner = mysqli_query($conn, $query_without_winner);
-
-						/* checks that results are in database*/
-						while ($row = mysqli_fetch_assoc($result_without_winner)) {
-							echo '<h1>'.$row['RaceName'].'</h1>';
-							echo '<h2>'.$row['TrackName']." - ".$row['Location'].'</h2>';
-							echo '<p>'.'<b>'."Time of race: ".'</b>'.$row['DateTime']."  NZST (New Zealand Standard Time)".'<br>'; /* displays date and time of race in new zealand */	
-							echo '<b>'."There is no race winner yet as race has not occured";
-						}
+					
 					?>
 					
 				</div>
